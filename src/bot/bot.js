@@ -1,14 +1,15 @@
 import { Telegraf } from 'telegraf';
 import process from 'node:process';
+import { dog, cat, start, weather, help } from '../commands/commands.js';
 
 const startBot = () => {
   const bot = new Telegraf(process.env.BOT_TOKEN);
 
-  bot.start((ctx) => ctx.reply('Welcome'));
-  bot.help((ctx) => ctx.reply('Description'));
-  bot.command('weather', (ctx) => ctx.reply('Weather'));
-  bot.command('cat', (ctx) => ctx.reply('Cat image'));
-  bot.command('dog', (ctx) => ctx.reply('Dog image'));
+  bot.start(start);
+  bot.help(help);
+  bot.command('weather', weather);
+  bot.command('cat', cat);
+  bot.command('dog', dog);
 
   bot.launch();
 
