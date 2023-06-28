@@ -1,9 +1,10 @@
 import { Telegraf } from 'telegraf';
 import process from 'node:process';
 import { dog, cat, start, weather, help } from '../commands/commands.js';
+import { BOT_TOKEN } from '../constants/environment.js';
 
 const startBot = () => {
-  const bot = new Telegraf(process.env.BOT_TOKEN);
+  const bot = new Telegraf(BOT_TOKEN);
 
   bot.start(start);
   bot.help(help);
