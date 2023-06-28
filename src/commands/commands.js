@@ -1,4 +1,4 @@
-import { getRandomImage } from '../api/imagesApi.js';
+import { getRandomImageByQuery } from '../services/imagesService.js';
 
 const start = (ctx) => {
   const username = ctx.message.from.first_name || ctx.message.from.username;
@@ -7,19 +7,7 @@ const start = (ctx) => {
 
 const help = (ctx) => ctx.reply('Weather');
 const weather = (ctx) => ctx.reply('Weather');
-const dog = async (ctx) => {
-  const imageInfo = await getRandomImage('dog');
-  ctx.replyWithPhoto(
-    { url: imageInfo.urls.raw },
-    { caption: imageInfo.alt_description },
-  );
-};
-const cat = async (ctx) => {
-  const imageInfo = await getRandomImage('cat');
-  ctx.replyWithPhoto(
-    { url: imageInfo.urls.raw },
-    { caption: imageInfo.alt_description },
-  );
-};
+const dog = (ctx) => getRandomImageByQuery(ctx, 'dog');
+const cat = (ctx) => getRandomImageByQuery(ctx, 'cat');
 
 export { start, help, weather, dog, cat };
