@@ -8,10 +8,10 @@ import getRandomIntegerInRange from '../utils/getRandomIntegerInRange.js';
 
 const getRandomImage = async (query) => {
   const pageNumber = getRandomIntegerInRange(1, 999);
-  const queryParams = `query=${query}&page=${pageNumber}&per_page=1`;
+  const queryParams = `?query=${query}&page=${pageNumber}&per_page=1`;
 
   const response = await axios.get(
-    `${BASE_URL}${SEARCH_IMAGE_URL}?${queryParams}`,
+    `${BASE_URL}${SEARCH_IMAGE_URL}${queryParams}`,
     {
       headers: {
         Authorization: `${IMAGE_API_TOKEN}`,
