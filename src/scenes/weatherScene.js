@@ -5,6 +5,7 @@ import {
   WEATHER_SCENE,
 } from '../constants/scenes.js';
 import { getWeatherInCity } from '../api/weatherApi.js';
+import schedule from 'node-schedule';
 
 const askCity = (ctx) => {
   ctx.reply('Enter City');
@@ -27,9 +28,22 @@ const getWeather = async (ctx) => {
   return ctx.scene.leave();
 };
 
+const askTime = (ctx) => {
+  ctx.reply('Enter time');
+  ctx.wizard.next();
+};
+
 const subscribe = (ctx) => {
+  schedule.scheduleJob('00 * * * *', async () => {
+    const weatherInfo = await getWeatherInCity('Minsk');
+    ctx.reply(
+      `Weather in ${weatherInfo.name}:
+      main: ${weatherInfo.weather[0].main}
+      description: ${weatherInfo.weather[0].description}
+      temp: ${weatherInfo.main.temp}`,
+    );
+  });
   ctx.reply('You are successfully subscribe');
-  ctx.scene.leave();
 };
 
 export const weatherScene = new Scenes.BaseScene(WEATHER_SCENE);
@@ -40,6 +54,7 @@ export const getWeatherScene = new Scenes.WizardScene(
 );
 export const subscribeWeatherScene = new Scenes.WizardScene(
   SUBSCRIBE_WEATHER_SCENE,
+  askTime,
   subscribe,
 );
 
