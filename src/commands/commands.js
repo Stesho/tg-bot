@@ -1,5 +1,4 @@
 import { getRandomImageByQuery } from '../services/imagesService.js';
-import { getWeatherInCity } from '../api/weatherApi.js';
 import { WEATHER_SCENE } from '../constants/scenes.js';
 
 const start = (ctx) => {

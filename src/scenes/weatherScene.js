@@ -1,28 +1,17 @@
 import { Scenes, Markup } from 'telegraf';
-import { WEATHER_SCENE } from '../constants/scenes.js';
+import {
+  GET_WEATHER_SCENE,
+  SUBSCRIBE_WEATHER_SCENE,
+  WEATHER_SCENE,
+} from '../constants/scenes.js';
 import { getWeatherInCity } from '../api/weatherApi.js';
 
-export const weatherScene = new Scenes.BaseScene(WEATHER_SCENE);
-
-weatherScene.enter((ctx) => {
-  ctx.reply(
-    'Weather',
-    Markup.inlineKeyboard([
-      Markup.button.callback('Get weather from city', 'get-weather'),
-      Markup.button.callback('Subscribe', 'subscribe-weather'),
-    ]).resize(),
-  );
-});
-
-weatherScene.action('get-weather', (ctx) => {
+const askCity = (ctx) => {
   ctx.reply('Enter City');
-});
+  ctx.wizard.next();
+};
 
-weatherScene.action('subscribe-weather', (ctx) => {
-  ctx.reply('Subscribe weather');
-});
-
-weatherScene.on('text', async (ctx) => {
+const getWeather = async (ctx) => {
   try {
     const weatherInfo = await getWeatherInCity(ctx.message.text);
     ctx.reply(
@@ -36,4 +25,38 @@ weatherScene.on('text', async (ctx) => {
     return;
   }
   return ctx.scene.leave();
+};
+
+const subscribe = (ctx) => {
+  ctx.reply('You are successfully subscribe');
+  ctx.scene.leave();
+};
+
+export const weatherScene = new Scenes.BaseScene(WEATHER_SCENE);
+export const getWeatherScene = new Scenes.WizardScene(
+  GET_WEATHER_SCENE,
+  askCity,
+  getWeather,
+);
+export const subscribeWeatherScene = new Scenes.WizardScene(
+  SUBSCRIBE_WEATHER_SCENE,
+  subscribe,
+);
+
+weatherScene.enter((ctx) => {
+  ctx.reply(
+    'Weather',
+    Markup.inlineKeyboard([
+      Markup.button.callback('Get weather from city', 'get-weather'),
+      Markup.button.callback('Subscribe', 'subscribe-weather'),
+    ]).resize(),
+  );
+});
+
+weatherScene.action('get-weather', (ctx) => {
+  return ctx.scene.enter(GET_WEATHER_SCENE);
+});
+
+weatherScene.action('subscribe-weather', (ctx) => {
+  return ctx.scene.enter(SUBSCRIBE_WEATHER_SCENE);
 });
