@@ -1,10 +1,11 @@
 import { Telegraf, Scenes, session } from 'telegraf';
 import process from 'node:process';
-import { dog, cat, start, weather, help } from '../commands/commands.js';
+import { dog, cat, start, weather, help, tasks } from '../commands/commands.js';
 import { BOT_TOKEN } from '../constants/environment.js';
 import weatherScene from '../scenes/weather/weatherScene.js';
 import weatherSubscriptionScene from '../scenes/weather/weatherSubscriptionScene.js';
 import weatherReceptionScene from '../scenes/weather/weatherReceptionScene.js';
+import tasksScene from '../scenes/tasks/tasksScene.js';
 
 const startBot = () => {
   const bot = new Telegraf(BOT_TOKEN);
@@ -12,6 +13,7 @@ const startBot = () => {
     weatherScene,
     weatherSubscriptionScene,
     weatherReceptionScene,
+    tasksScene,
   ]);
 
   bot.use(session());
@@ -22,6 +24,19 @@ const startBot = () => {
   bot.command('weather', weather);
   bot.command('cat', cat);
   bot.command('dog', dog);
+  bot.command('tasks', tasks);
+
+  bot.telegram.setMyCommands([
+    { command: '/start', description: 'Greetings' },
+    { command: '/help', description: 'Bot features description' },
+    {
+      command: '/weather',
+      description: 'Current weather in the specified city',
+    },
+    { command: '/cat', description: 'Image of a random cat' },
+    { command: '/dog', description: 'Image of a random dog' },
+    { command: '/tasks', description: 'Managing my tasks' },
+  ]);
 
   bot.launch();
 
