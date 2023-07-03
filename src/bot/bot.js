@@ -2,19 +2,16 @@ import { Telegraf, Scenes, session } from 'telegraf';
 import process from 'node:process';
 import { dog, cat, start, weather, help } from '../commands/commands.js';
 import { BOT_TOKEN } from '../constants/environment.js';
-import {
-  getWeatherScene,
-  subscribeWeatherScene,
-  weatherScene,
-} from '../scenes/weatherScene.js';
-import { WEATHER_SCENE } from '../constants/scenes.js';
+import weatherScene from '../scenes/weatherScene.js';
+import weatherSubscriptionScene from '../scenes/weatherSubscriptionScene.js';
+import weatherReceptionScene from '../scenes/weatherReceptionScene.js';
 
 const startBot = () => {
   const bot = new Telegraf(BOT_TOKEN);
   const stage = new Scenes.Stage([
     weatherScene,
-    getWeatherScene,
-    subscribeWeatherScene,
+    weatherSubscriptionScene,
+    weatherReceptionScene,
   ]);
 
   bot.use(session());
