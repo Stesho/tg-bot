@@ -1,5 +1,5 @@
 import { getRandomImageByQuery } from '../services/imagesService.js';
-import { WEATHER_SCENE } from '../constants/scenes.js';
+import { WEATHER_SCENE } from '../constants/scenes/weatherScenesConst.js';
 
 const start = (ctx) => {
   const username = ctx.message.from.first_name || ctx.message.from.username;

@@ -2,11 +2,11 @@ import { Scenes } from 'telegraf';
 import {
   SUBSCRIBE_WEATHER_SCENE,
   UNSUBSCRIBE_WEATHER_SCENE,
-} from '../constants/scenes.js';
+} from '../../constants/scenes/weatherScenesConst.js';
 import schedule from 'node-schedule';
-import { getWeatherInCity } from '../api/weatherApi.js';
-import validateTime from '../utils/validateTime.js';
-import parseTime from '../utils/parseTime.js';
+import { getWeatherInCity } from '../../api/weatherApi.js';
+import validateTime from '../../utils/validateTime.js';
+import parseTime from '../../utils/parseTime.js';
 
 const askCity = (ctx) => {
   ctx.wizard.state.weather = {

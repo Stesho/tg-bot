@@ -4,7 +4,7 @@ import {
   SUBSCRIBE_WEATHER_SCENE,
   UNSUBSCRIBE_WEATHER_SCENE,
   WEATHER_SCENE,
-} from '../constants/scenes.js';
+} from '../../constants/scenes/weatherScenesConst.js';
 import schedule from 'node-schedule';
 
 const weatherScene = new Scenes.BaseScene(WEATHER_SCENE);

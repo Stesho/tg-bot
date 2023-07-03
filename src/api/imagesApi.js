@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
   BASE_IMAGE_API_URL as BASE_URL,
   SEARCH_IMAGE_API_URL as SEARCH_IMAGE_URL,
-} from '../constants/imageApiConstants.js';
+} from '../constants/api/imageApiConst.js';
 import { IMAGE_API_TOKEN } from '../constants/environment.js';
 import getRandomIntegerInRange from '../utils/getRandomIntegerInRange.js';
 

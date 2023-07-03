@@ -1,6 +1,6 @@
 import { Scenes } from 'telegraf';
-import { GET_WEATHER_SCENE } from '../constants/scenes.js';
-import { getWeatherInCity } from '../api/weatherApi.js';
+import { GET_WEATHER_SCENE } from '../../constants/scenes/weatherScenesConst.js';
+import { getWeatherInCity } from '../../api/weatherApi.js';
 
 const askCity = (ctx) => {
   ctx.reply('Enter City');
