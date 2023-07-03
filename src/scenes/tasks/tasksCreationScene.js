@@ -1,5 +1,5 @@
 import { Scenes } from 'telegraf';
-import { TASK_ADD_SCENE } from '../../constants/scenes/tasksScenes.js';
+import { TASK_ADD_SCENE } from '../../constants/scenes/tasksScenesConst.js';
 import addTask from '../../services/addTask.js';
 
 const askTitle = async (ctx) => {
