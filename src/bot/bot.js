@@ -1,11 +1,12 @@
 import { Telegraf, Scenes, session } from 'telegraf';
 import process from 'node:process';
 import { dog, cat, start, weather, help, tasks } from '../commands/commands.js';
-import { BOT_TOKEN } from '../constants/environment.js';
+import { BOT_TOKEN, DB_CONNECTION_URI } from '../constants/environment.js';
 import weatherScene from '../scenes/weather/weatherScene.js';
 import weatherSubscriptionScene from '../scenes/weather/weatherSubscriptionScene.js';
 import weatherReceptionScene from '../scenes/weather/weatherReceptionScene.js';
 import tasksScene from '../scenes/tasks/tasksScene.js';
+import connectToDb from '../config/dbConnection.js';
 
 const startBot = () => {
   const bot = new Telegraf(BOT_TOKEN);
@@ -15,6 +16,8 @@ const startBot = () => {
     weatherReceptionScene,
     tasksScene,
   ]);
+
+  connectToDb(DB_CONNECTION_URI);
 
   bot.use(session());
   bot.use(stage.middleware());
