@@ -7,6 +7,7 @@ import weatherSubscriptionScene from '../scenes/weather/weatherSubscriptionScene
 import weatherReceptionScene from '../scenes/weather/weatherReceptionScene.js';
 import tasksScene from '../scenes/tasks/tasksScene.js';
 import connectToDb from '../config/dbConnection.js';
+import tasksCreationScene from '../scenes/tasks/tasksCreationScene.js';
 
 const startBot = () => {
   const bot = new Telegraf(BOT_TOKEN);
@@ -15,6 +16,7 @@ const startBot = () => {
     weatherSubscriptionScene,
     weatherReceptionScene,
     tasksScene,
+    tasksCreationScene,
   ]);
 
   connectToDb(DB_CONNECTION_URI);
