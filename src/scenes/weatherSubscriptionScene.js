@@ -1,5 +1,8 @@
 import { Scenes } from 'telegraf';
-import { SUBSCRIBE_WEATHER_SCENE } from '../constants/scenes.js';
+import {
+  SUBSCRIBE_WEATHER_SCENE,
+  UNSUBSCRIBE_WEATHER_SCENE,
+} from '../constants/scenes.js';
 import schedule from 'node-schedule';
 import { getWeatherInCity } from '../api/weatherApi.js';
 import validateTime from '../utils/validateTime.js';
@@ -32,19 +35,23 @@ const subscribe = async (ctx) => {
     ctx.wizard.state.weather.time = time;
 
     if (!validateTime(time)) {
-      throw new Error();
+      throw new Error('Invalid time');
     }
 
     const [hours, minutes] = parseTime(time);
-    schedule.scheduleJob(`${minutes} ${hours} * * *`, async () => {
-      const weatherInfo = await getWeatherInCity(city);
-      ctx.reply(
-        `Weather in ${weatherInfo.name}:
+    schedule.scheduleJob(
+      UNSUBSCRIBE_WEATHER_SCENE,
+      `${minutes} ${hours} * * *`,
+      async () => {
+        const weatherInfo = await getWeatherInCity(city);
+        ctx.reply(
+          `Weather in ${weatherInfo.name}:
         main: ${weatherInfo.weather[0].main}
         description: ${weatherInfo.weather[0].description}
         temp: ${weatherInfo.main.temp}`,
-      );
-    });
+        );
+      },
+    );
 
     ctx.reply('You are successfully subscribe');
     return ctx.scene.leave();
