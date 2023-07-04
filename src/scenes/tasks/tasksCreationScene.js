@@ -6,6 +6,7 @@ const askTitle = async (ctx) => {
   ctx.wizard.state.task = {
     title: '',
     content: '',
+    user_id: ctx.scene.state.user.id,
   };
   ctx.reply('Enter Title');
   return ctx.wizard.next();
@@ -19,11 +20,7 @@ const askContent = async (ctx) => {
 
 const createTask = async (ctx) => {
   ctx.wizard.state.task.content = ctx.message.text;
-  const task = {
-    title: ctx.wizard.state.task.title,
-    content: ctx.wizard.state.task.content,
-  };
-  await addTask(task);
+  await addTask(ctx.wizard.state.task);
   ctx.reply('Task was successfully added');
   return ctx.scene.leave();
 };

@@ -3,8 +3,7 @@ import { TASK_GETTING_SCENE } from '../../constants/scenes/tasksScenesConst.js';
 import getTasks from '../../services/getTasks.js';
 
 const showTasks = async (ctx) => {
-  const tasks = await getTasks();
-  console.log(tasks);
+  const tasks = await getTasks(ctx.scene.state.user.id);
   tasks.forEach((task) => {
     ctx.reply(
       `${task.title}

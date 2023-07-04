@@ -8,6 +8,10 @@ import {
 const tasksScene = new Scenes.BaseScene(TASKS_SCENE);
 
 tasksScene.enter((ctx) => {
+  ctx.scene.state.user = {};
+  ctx.scene.state.user.id = ctx.update.message.from.id;
+  ctx.scene.state.user.username = ctx.update.message.from.username;
+
   ctx.reply(
     'Tasks',
     Markup.inlineKeyboard([
@@ -18,11 +22,11 @@ tasksScene.enter((ctx) => {
 });
 
 tasksScene.action(TASK_GETTING_SCENE, (ctx) => {
-  return ctx.scene.enter(TASK_GETTING_SCENE);
+  return ctx.scene.enter(TASK_GETTING_SCENE, ctx.scene.state);
 });
 
 tasksScene.action(TASK_ADD_SCENE, (ctx) => {
-  return ctx.scene.enter(TASK_ADD_SCENE);
+  return ctx.scene.enter(TASK_ADD_SCENE, ctx.scene.state);
 });
 
 export default tasksScene;
