@@ -14,6 +14,7 @@ import {
   tasksEditTitleScene,
   tasksEditContentScene,
 } from '../scenes/tasks/tasksEditScene.js';
+import tasksNotificationScene from '../scenes/tasks/tasksNotification.js';
 
 const startBot = () => {
   const bot = new Telegraf(BOT_TOKEN);
@@ -27,6 +28,7 @@ const startBot = () => {
     tasksEditScene,
     tasksEditTitleScene,
     tasksEditContentScene,
+    tasksNotificationScene,
   ]);
 
   connectToDb(DB_CONNECTION_URI);

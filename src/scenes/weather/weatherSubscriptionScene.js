@@ -32,7 +32,6 @@ const subscribe = async (ctx) => {
   try {
     const city = ctx.wizard.state.weather.city;
     const time = ctx.message.text;
-    ctx.wizard.state.weather.time = time;
 
     if (!validateTime(time)) {
       throw new Error('Invalid time');
