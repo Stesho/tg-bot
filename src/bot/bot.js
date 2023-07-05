@@ -9,6 +9,11 @@ import tasksScene from '../scenes/tasks/tasksScene.js';
 import connectToDb from '../config/dbConnection.js';
 import tasksCreationScene from '../scenes/tasks/tasksCreationScene.js';
 import tasksGettingScene from '../scenes/tasks/tasksGettingScene.js';
+import {
+  tasksEditScene,
+  tasksEditTitleScene,
+  tasksEditContentScene,
+} from '../scenes/tasks/tasksEditScene.js';
 
 const startBot = () => {
   const bot = new Telegraf(BOT_TOKEN);
@@ -19,6 +24,9 @@ const startBot = () => {
     tasksScene,
     tasksCreationScene,
     tasksGettingScene,
+    tasksEditScene,
+    tasksEditTitleScene,
+    tasksEditContentScene,
   ]);
 
   connectToDb(DB_CONNECTION_URI);

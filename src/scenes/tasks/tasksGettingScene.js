@@ -14,7 +14,7 @@ const showTasks = async (ctx) => {
       `${task.title}
       ${task.content}`,
       Markup.inlineKeyboard([
-        Markup.button.callback('Edit task', TASK_EDIT_SCENE),
+        Markup.button.callback('Edit task', `edit-task_${task.id}`),
         Markup.button.callback('Delete task', `delete-task_${task.id}`),
       ]),
     );
@@ -23,8 +23,9 @@ const showTasks = async (ctx) => {
 
 const tasksGettingScene = new Scenes.WizardScene(TASK_GETTING_SCENE, showTasks);
 
-tasksGettingScene.action(TASK_EDIT_SCENE, (ctx) => {
-  return ctx.scene.leave();
+tasksGettingScene.action(/edit-task_(.+)/, async (ctx) => {
+  const taskId = await ctx.match.input.split('_')[1];
+  return ctx.scene.enter(TASK_EDIT_SCENE, { taskId });
 });
 
 tasksGettingScene.action(/delete-task_(.+)/, async (ctx) => {
