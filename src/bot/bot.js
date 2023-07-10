@@ -9,12 +9,10 @@ import tasksScene from '../scenes/tasks/tasksScene.js';
 import connectToDb from '../config/dbConnection.js';
 import tasksCreationScene from '../scenes/tasks/tasksCreationScene.js';
 import tasksGettingScene from '../scenes/tasks/tasksGettingScene.js';
-import {
-  tasksEditScene,
-  tasksEditTitleScene,
-  tasksEditContentScene,
-} from '../scenes/tasks/tasksEditScene.js';
+import tasksEditScene from '../scenes/tasks/tasksEditScene.js';
 import tasksNotificationScene from '../scenes/tasks/tasksNotification.js';
+import tasksEditTitleScene from '../scenes/tasks/tasksEditTitleScene.js';
+import tasksEditContentScene from '../scenes/tasks/tasksEditContentScene.js';
 
 const startBot = () => {
   const bot = new Telegraf(BOT_TOKEN);
