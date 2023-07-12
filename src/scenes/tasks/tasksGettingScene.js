@@ -1,55 +1,39 @@
 import { Markup, Scenes } from 'telegraf';
-import {
-  TASK_EDIT_SCENE,
-  TASK_GETTING_SCENE,
-  TASK_NOTIFICATION_SCENE,
-} from '../../constants/scenes/tasksScenesConst.js';
+import { TASK_GETTING_SCENE } from '../../constants/scenes/tasksScenesConst.js';
 import getTasks from '../../services/getTasks.js';
-import deleteTask from '../../services/deleteTask.js';
 
-const showTasks = async (ctx) => {
-  const userId = ctx.scene.state.user.id;
+const tasksGettingScene = new Scenes.BaseScene(TASK_GETTING_SCENE);
+
+tasksGettingScene.enter(async (ctx) => {
+  const userId = ctx.scene.state.userId;
   const tasks = await getTasks(userId);
+  const tasksButtons = tasks.map((task, index) => [
+    Markup.button.callback(
+      `${index + 1}. ${task.title}`,
+      `choose-task_${task.id}`,
+    ),
+  ]);
 
-  tasks.forEach((task) => {
-    ctx.reply(
-      `${task.title}
-      ${task.content}`,
-      Markup.inlineKeyboard([
-        [
-          Markup.button.callback(
-            'Set notification',
-            `set-notification_${task.id}`,
-          ),
-        ],
-        [
-          Markup.button.callback('Edit task', `edit-task_${task.id}`),
-          Markup.button.callback('Delete task', `delete-task_${task.id}`),
-        ],
-      ]),
-    );
-  });
-};
+  const messageText =
+    'Below you can see a list of all your tasks. ' +
+    'Click on one of them to change the task, delete ' +
+    'it, or set a reminder.';
 
-const tasksGettingScene = new Scenes.WizardScene(TASK_GETTING_SCENE, showTasks);
-
-tasksGettingScene.action(/set-notification_(.+)/, async (ctx) => {
-  const taskId = await ctx.match.input.split('_')[1];
-  const userId = ctx.scene.state.user.id;
-
-  return ctx.scene.enter(TASK_NOTIFICATION_SCENE, { taskId, userId });
+  await ctx.editMessageText(
+    tasksButtons.length > 0 ? messageText : 'There are no tasks yet',
+    {
+      reply_markup: {
+        inline_keyboard: tasksButtons,
+      },
+    },
+  );
 });
 
-tasksGettingScene.action(/edit-task_(.+)/, async (ctx) => {
+tasksGettingScene.action(/choose-task_(.+)/, async (ctx) => {
   const taskId = await ctx.match.input.split('_')[1];
-  return ctx.scene.enter(TASK_EDIT_SCENE, { taskId });
-});
+  const state = ctx.scene.state;
 
-tasksGettingScene.action(/delete-task_(.+)/, async (ctx) => {
-  const taskId = await ctx.match.input.split('_')[1];
-  await deleteTask(taskId);
-  ctx.reply('Task successfully deleted');
-  return ctx.scene.leave();
+  return ctx.scene.enter('selectTaskOptionMenu', { ...state, taskId });
 });
 
 export default tasksGettingScene;

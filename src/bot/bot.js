@@ -9,10 +9,9 @@ import tasksScene from '../scenes/tasks/tasksScene.js';
 import connectToDb from '../config/dbConnection.js';
 import tasksCreationScene from '../scenes/tasks/tasksCreationScene.js';
 import tasksGettingScene from '../scenes/tasks/tasksGettingScene.js';
-import tasksEditScene from '../scenes/tasks/tasksEditScene.js';
-import tasksNotificationScene from '../scenes/tasks/tasksNotification.js';
-import tasksEditTitleScene from '../scenes/tasks/tasksEditTitleScene.js';
-import tasksEditContentScene from '../scenes/tasks/tasksEditContentScene.js';
+import tasksUpdatingScene from '../scenes/tasks/tasksUpdatingScene.js';
+import tasksNotificationScene from '../scenes/tasks/tasksNotificationScene.js';
+import tasksOptionsScene from '../scenes/tasks/tasksOptionsScene.js';
 
 const startBot = () => {
   const bot = new Telegraf(BOT_TOKEN);
@@ -21,12 +20,11 @@ const startBot = () => {
     weatherSubscriptionScene,
     weatherReceptionScene,
     tasksScene,
-    tasksCreationScene,
     tasksGettingScene,
-    tasksEditScene,
-    tasksEditTitleScene,
-    tasksEditContentScene,
+    tasksCreationScene,
+    tasksUpdatingScene,
     tasksNotificationScene,
+    tasksOptionsScene,
   ]);
 
   connectToDb(DB_CONNECTION_URI);
