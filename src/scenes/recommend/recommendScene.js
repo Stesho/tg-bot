@@ -25,23 +25,4 @@ recommendScene.action(RECOMMEND_PLACES_SCENE, async (ctx) => {
   return ctx.scene.enter(RECOMMEND_PLACES_SCENE);
 });
 
-// const step = new Composer();
-//
-// step.action(RECOMMEND_EVENTS_SCENE, async (ctx) => {
-//
-// });
-//
-// const recommendScene = new Scenes.WizardScene(
-//   RECOMMEND_SCENE,
-//   async (ctx) => {
-//     await ctx.reply(
-//       'Tasks',
-//       Markup.inlineKeyboard([
-//         [Markup.button.callback('Recommend events', RECOMMEND_EVENTS_SCENE)],
-//         [Markup.button.callback('Recommend places', RECOMMEND_PLACES_SCENE)],
-//       ]).resize(),
-//     );
-//   },
-// );
-
 export default recommendScene;
