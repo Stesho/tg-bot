@@ -3,6 +3,7 @@ import schedule from 'node-schedule';
 import { Markup, Scenes } from 'telegraf';
 import { TASK_NOTIFICATION_SCENE } from '../../constants/scenes/tasksScenesConst.js';
 import getOneTask from '../../db/task/getOneTask.js';
+import messages from '../../constants/messages/messages.js';
 
 const setNotification = async (ctx) => {
   const time = ctx.message.text;
@@ -21,23 +22,20 @@ const setNotification = async (ctx) => {
     },
   );
 
-  ctx.reply(`You are successfully set notification at ${hours}:${minutes}`);
+  ctx.reply(messages.notificationCreatedSuccessfully(hours, minutes));
 };
 
 const tasksNotificationScene = new Scenes.WizardScene(
   TASK_NOTIFICATION_SCENE,
   async (ctx) => {
-    const taskId = ctx.scene.state.taskId;
-    await ctx.editMessageText(
-      `Set notification
-      taskId: ${taskId}`,
-      {
-        reply_markup: {
-          inline_keyboard: [[Markup.button.callback('Back', `back`)]],
-        },
+    await ctx.editMessageText(messages.taskNotificationSceneTitle, {
+      reply_markup: {
+        inline_keyboard: [
+          [Markup.button.callback(messages.backButton, `back`)],
+        ],
       },
-    );
-    await ctx.reply('Enter the notification time');
+    });
+    await ctx.reply(messages.askTime);
     return ctx.wizard.next();
   },
   setNotification,

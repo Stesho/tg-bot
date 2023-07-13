@@ -1,11 +1,12 @@
 import { Scenes } from 'telegraf';
 import { RECOMMEND_PLACES_SCENE } from '../../constants/scenes/recommendScenesConst.js';
 import getPlacesByCity from '../../api/placesApi.js';
+import messages from '../../constants/messages/messages.js';
 
 const recommendPlacesScene = new Scenes.WizardScene(
   RECOMMEND_PLACES_SCENE,
   async (ctx) => {
-    await ctx.reply('Enter city');
+    await ctx.reply(messages.askCity);
     return ctx.wizard.next();
   },
   async (ctx) => {

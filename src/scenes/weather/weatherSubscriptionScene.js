@@ -7,13 +7,14 @@ import schedule from 'node-schedule';
 import { getWeatherInCity } from '../../api/weatherApi.js';
 import validateTime from '../../utils/validateTime.js';
 import parseTime from '../../utils/parseTime.js';
+import messages from '../../constants/messages/messages.js';
 
 const askCity = (ctx) => {
   ctx.wizard.state.weather = {
     city: '',
     time: '',
   };
-  ctx.reply('Enter city');
+  ctx.reply(messages.askCity);
   ctx.wizard.next();
 };
 
@@ -21,10 +22,10 @@ const askTime = async (ctx) => {
   try {
     await getWeatherInCity(ctx.message.text);
     ctx.wizard.state.weather.city = ctx.message.text;
-    ctx.reply('Enter the time in the format 15:00');
+    ctx.reply(messages.askTime);
     ctx.wizard.next();
   } catch (error) {
-    ctx.reply('City not found. Try again');
+    ctx.reply(messages.cityNotFound);
   }
 };
 
@@ -34,7 +35,7 @@ const subscribe = async (ctx) => {
     const time = ctx.message.text;
 
     if (!validateTime(time)) {
-      throw new Error('Invalid time');
+      throw new Error(messages.invalidTime);
     }
 
     const [hours, minutes] = parseTime(time);
@@ -52,10 +53,10 @@ const subscribe = async (ctx) => {
       },
     );
 
-    ctx.reply('You are successfully subscribe');
+    ctx.reply(messages.userSubscribedSuccessfully);
     return ctx.scene.leave();
   } catch (error) {
-    ctx.reply('Invalid time. Try again');
+    ctx.reply(messages.invalidTime);
     return;
   }
 };

@@ -5,19 +5,25 @@ import {
   TASK_UPDATING_SCENE,
 } from '../../constants/scenes/tasksScenesConst.js';
 import deleteTask from '../../db/task/deleteTask.js';
+import messages from '../../constants/messages/messages.js';
 
 const tasksOptionsScene = new Scenes.BaseScene('selectTaskOptionMenu');
 tasksOptionsScene.enter(async (ctx) => {
   const taskId = ctx.scene.state.taskId;
-  await ctx.editMessageText(`taskId: ${taskId}`, {
+  await ctx.editMessageText(messages.taskOptionsSceneTitle, {
     reply_markup: {
       inline_keyboard: [
-        [Markup.button.callback('Set notification', `set-notification`)],
         [
-          Markup.button.callback('Edit task', `edit-task`),
-          Markup.button.callback('Delete task', `delete-task`),
+          Markup.button.callback(
+            messages.taskSetNotification,
+            `set-notification`,
+          ),
         ],
-        [Markup.button.callback('Back', `back`)],
+        [
+          Markup.button.callback(messages.taskEdit, `edit-task`),
+          Markup.button.callback(messages.taskDelete, `delete-task`),
+        ],
+        [Markup.button.callback(messages.backButton, `back`)],
       ],
     },
   });
@@ -35,7 +41,7 @@ tasksOptionsScene.action('delete-task', async (ctx) => {
   const taskId = ctx.scene.state.taskId;
 
   await deleteTask(taskId);
-  await ctx.reply('Task successfully deleted');
+  await ctx.reply(messages.taskDeletedSuccessfully);
 
   return ctx.scene.enter(TASK_GETTING_SCENE, ctx.scene.state);
 });

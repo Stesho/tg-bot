@@ -4,6 +4,7 @@ import {
   TASK_GETTING_SCENE,
   TASKS_SCENE,
 } from '../../constants/scenes/tasksScenesConst.js';
+import messages from '../../constants/messages/messages.js';
 
 const tasksScene = new Scenes.BaseScene(TASKS_SCENE);
 
@@ -11,10 +12,10 @@ tasksScene.enter((ctx) => {
   ctx.scene.state.userId = ctx.update.message.from.id;
 
   ctx.reply(
-    'Tasks',
+    messages.taskSceneTitle,
     Markup.inlineKeyboard([
-      [Markup.button.callback('Show my tasks', TASK_GETTING_SCENE)],
-      [Markup.button.callback('Add new task', TASK_ADD_SCENE)],
+      [Markup.button.callback(messages.taskShow, TASK_GETTING_SCENE)],
+      [Markup.button.callback(messages.taskAdd, TASK_ADD_SCENE)],
     ]).resize(),
   );
 });

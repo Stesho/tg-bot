@@ -6,16 +6,22 @@ import {
   WEATHER_SCENE,
 } from '../../constants/scenes/weatherScenesConst.js';
 import schedule from 'node-schedule';
+import messages from '../../constants/messages/messages.js';
 
 const weatherScene = new Scenes.BaseScene(WEATHER_SCENE);
 
 weatherScene.enter((ctx) => {
   ctx.reply(
-    'Weather',
+    messages.weatherSceneTitle,
     Markup.inlineKeyboard([
-      [Markup.button.callback('Get weather from city', 'get-weather')],
-      [Markup.button.callback('Subscribe', 'subscribe-weather')],
-      [Markup.button.callback('Unsubscribe', 'unsubscribe-weather')],
+      [Markup.button.callback(messages.weatherRequest, 'get-weather')],
+      [Markup.button.callback(messages.weatherSubscribe, 'subscribe-weather')],
+      [
+        Markup.button.callback(
+          messages.weatherUnsubscribe,
+          'unsubscribe-weather',
+        ),
+      ],
     ]).resize(),
   );
 });

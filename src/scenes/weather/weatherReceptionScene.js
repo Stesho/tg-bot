@@ -1,9 +1,10 @@
 import { Scenes } from 'telegraf';
 import { GET_WEATHER_SCENE } from '../../constants/scenes/weatherScenesConst.js';
 import { getWeatherInCity } from '../../api/weatherApi.js';
+import messages from '../../constants/messages/messages.js';
 
 const askCity = (ctx) => {
-  ctx.reply('Enter City');
+  ctx.reply(messages.askCity);
   ctx.wizard.next();
 };
 
@@ -17,7 +18,7 @@ const getWeather = async (ctx) => {
     temp: ${weatherInfo.main.temp}`,
     );
   } catch (error) {
-    ctx.reply('Try again');
+    ctx.reply(messages.serverError);
     return;
   }
   return ctx.scene.leave();

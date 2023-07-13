@@ -1,6 +1,7 @@
 import { Markup, Scenes } from 'telegraf';
 import { TASK_ADD_SCENE } from '../../constants/scenes/tasksScenesConst.js';
 import addTask from '../../db/task/addTask.js';
+import messages from '../../constants/messages/messages.js';
 
 const askTitle = async (ctx) => {
   ctx.scene.state.task = {
@@ -8,20 +9,20 @@ const askTitle = async (ctx) => {
     content: '',
     user_id: ctx.scene.state.userId,
   };
-  ctx.reply('Enter Title');
+  ctx.reply(messages.askTitle);
   return ctx.wizard.next();
 };
 
 const askContent = async (ctx) => {
   ctx.scene.state.task.title = ctx.message.text;
-  ctx.reply('Enter Text');
+  ctx.reply(messages.askContent);
   return ctx.wizard.next();
 };
 
 const createTask = async (ctx) => {
   ctx.scene.state.task.content = ctx.message.text;
   await addTask(ctx.scene.state.task);
-  ctx.reply('Task was successfully added');
+  ctx.reply(messages.taskAddedSuccessfully);
   return ctx.scene.leave();
 };
 

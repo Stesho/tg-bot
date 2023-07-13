@@ -1,7 +1,8 @@
 import { getRandomImage } from '../api/imagesApi.js';
+import messages from '../constants/messages/messages.js';
 
 const getRandomImageByQuery = async (ctx, query) => {
-  const loadingMessage = await ctx.reply('loading...');
+  const loadingMessage = await ctx.reply(messages.loading);
   const resources = await getRandomImage(query);
   const imageInfo = resources.photos[0];
   await ctx.replyWithPhoto({

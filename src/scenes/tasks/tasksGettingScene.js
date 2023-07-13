@@ -1,6 +1,7 @@
 import { Markup, Scenes } from 'telegraf';
 import { TASK_GETTING_SCENE } from '../../constants/scenes/tasksScenesConst.js';
 import getAllTasks from '../../db/task/getAllTasks.js';
+import messages from '../../constants/messages/messages.js';
 
 const tasksGettingScene = new Scenes.BaseScene(TASK_GETTING_SCENE);
 
@@ -14,13 +15,10 @@ tasksGettingScene.enter(async (ctx) => {
     ),
   ]);
 
-  const messageText =
-    'Below you can see a list of all your tasks. ' +
-    'Click on one of them to change the task, delete ' +
-    'it, or set a reminder.';
+  const messageText = messages.taskListTitle;
 
   await ctx.editMessageText(
-    tasksButtons.length > 0 ? messageText : 'There are no tasks yet',
+    tasksButtons.length > 0 ? messageText : messages.emptyTaskList,
     {
       reply_markup: {
         inline_keyboard: tasksButtons,
