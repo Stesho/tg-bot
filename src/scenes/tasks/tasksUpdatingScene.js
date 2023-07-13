@@ -1,6 +1,6 @@
 import { Markup, Scenes } from 'telegraf';
 import { TASK_UPDATING_SCENE } from '../../constants/scenes/tasksScenesConst.js';
-import editTask from '../../models/task/updateTask.js';
+import editTask from '../../db/task/updateTask.js';
 
 const tasksUpdatingScene = new Scenes.BaseScene(TASK_UPDATING_SCENE);
 

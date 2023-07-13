@@ -2,7 +2,7 @@ import parseTime from '../../utils/parseTime.js';
 import schedule from 'node-schedule';
 import { Markup, Scenes } from 'telegraf';
 import { TASK_NOTIFICATION_SCENE } from '../../constants/scenes/tasksScenesConst.js';
-import getOneTask from '../../models/task/getOneTask.js';
+import getOneTask from '../../db/task/getOneTask.js';
 
 const setNotification = async (ctx) => {
   const time = ctx.message.text;

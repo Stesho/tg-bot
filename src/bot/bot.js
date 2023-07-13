@@ -17,7 +17,7 @@ import weatherScene from '../scenes/weather/weatherScene.js';
 import weatherSubscriptionScene from '../scenes/weather/weatherSubscriptionScene.js';
 import weatherReceptionScene from '../scenes/weather/weatherReceptionScene.js';
 import tasksScene from '../scenes/tasks/tasksScene.js';
-import connectToDb from '../config/dbConnection.js';
+import connectDb from '../db/dbConnection/connectDb.js';
 import tasksCreationScene from '../scenes/tasks/tasksCreationScene.js';
 import tasksGettingScene from '../scenes/tasks/tasksGettingScene.js';
 import tasksUpdatingScene from '../scenes/tasks/tasksUpdatingScene.js';
@@ -44,7 +44,7 @@ const startBot = () => {
     recommendPlacesScene,
   ]);
 
-  connectToDb(DB_CONNECTION_URI);
+  connectDb(DB_CONNECTION_URI);
 
   bot.use(session());
   bot.use(stage.middleware());

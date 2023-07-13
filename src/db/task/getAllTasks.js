@@ -1,4 +1,4 @@
-import TaskSchema from '../../schemas/taskSchema.js';
+import TaskSchema from '../schemas/taskSchema.js';
 
 const getAllTasks = async (userId) => {
   try {
