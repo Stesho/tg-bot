@@ -1,6 +1,6 @@
-import TaskSchema from '../schemas/taskSchema.js';
+import TaskSchema from '../../schemas/taskSchema.js';
 
-const editTask = async (taskId, updatedTaskFields) => {
+const updateTask = async (taskId, updatedTaskFields) => {
   try {
     return await TaskSchema.updateOne(
       {
@@ -15,4 +15,4 @@ const editTask = async (taskId, updatedTaskFields) => {
   }
 };
 
-export default editTask;
+export default updateTask;

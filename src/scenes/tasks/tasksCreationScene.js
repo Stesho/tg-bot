@@ -1,6 +1,6 @@
 import { Markup, Scenes } from 'telegraf';
 import { TASK_ADD_SCENE } from '../../constants/scenes/tasksScenesConst.js';
-import addTask from '../../services/addTask.js';
+import addTask from '../../models/task/addTask.js';
 
 const askTitle = async (ctx) => {
   ctx.scene.state.task = {

@@ -1,12 +1,12 @@
 import { Markup, Scenes } from 'telegraf';
 import { TASK_GETTING_SCENE } from '../../constants/scenes/tasksScenesConst.js';
-import getTasks from '../../services/getTasks.js';
+import getAllTasks from '../../models/task/getAllTasks.js';
 
 const tasksGettingScene = new Scenes.BaseScene(TASK_GETTING_SCENE);
 
 tasksGettingScene.enter(async (ctx) => {
   const userId = ctx.scene.state.userId;
-  const tasks = await getTasks(userId);
+  const tasks = await getAllTasks(userId);
   const tasksButtons = tasks.map((task, index) => [
     Markup.button.callback(
       `${index + 1}. ${task.title}`,

@@ -4,7 +4,7 @@ import {
   TASK_NOTIFICATION_SCENE,
   TASK_UPDATING_SCENE,
 } from '../../constants/scenes/tasksScenesConst.js';
-import deleteTask from '../../services/deleteTask.js';
+import deleteTask from '../../models/task/deleteTask.js';
 
 const tasksOptionsScene = new Scenes.BaseScene('selectTaskOptionMenu');
 tasksOptionsScene.enter(async (ctx) => {

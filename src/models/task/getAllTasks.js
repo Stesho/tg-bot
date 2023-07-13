@@ -1,6 +1,6 @@
-import TaskSchema from '../schemas/taskSchema.js';
+import TaskSchema from '../../schemas/taskSchema.js';
 
-const getTasks = async (userId) => {
+const getAllTasks = async (userId) => {
   try {
     return await TaskSchema.find({
       user_id: userId,
@@ -10,4 +10,4 @@ const getTasks = async (userId) => {
   }
 };
 
-export default getTasks;
+export default getAllTasks;
