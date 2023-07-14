@@ -2,6 +2,7 @@ import { Scenes } from 'telegraf';
 import { RECOMMEND_PLACES_SCENE } from '../../constants/scenes/recommendScenesConst.js';
 import getPlacesByCity from '../../api/placesApi.js';
 import messages from '../../constants/messages/messages.js';
+import getPlacesReplyText from '../../utils/getPlacesReplyText.js';
 
 const recommendPlacesScene = new Scenes.WizardScene(
   RECOMMEND_PLACES_SCENE,
@@ -12,14 +13,9 @@ const recommendPlacesScene = new Scenes.WizardScene(
   async (ctx) => {
     const city = ctx.message.text;
     const places = await getPlacesByCity(city);
-    const googleMapLink = `https://maps.google.com/?q=`;
+    const replyText = getPlacesReplyText(places);
 
-    const replyText = places.reduce((message, place) => {
-      const kind = place.kinds.split(',')[0];
-      return `${message}\n${place.name}\n${kind}\nLook on the map: ${googleMapLink}${place.point.lat},${place.point.lon}\n`;
-    }, '');
-
-    await ctx.reply(replyText);
+    await ctx.replyWithHTML(replyText);
 
     return ctx.scene.leave();
   },

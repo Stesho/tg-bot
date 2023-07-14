@@ -6,7 +6,7 @@ import {
 import { WEATHER_API_TOKEN } from '../constants/environment.js/environment.js';
 
 const getWeatherInCity = async (city) => {
-  const queryParams = `?q=${city}&appid=${WEATHER_API_TOKEN}`;
+  const queryParams = `?q=${city}&appid=${WEATHER_API_TOKEN}&units=metric`;
 
   const response = await axios.get(
     `${BASE_URL}${GET_WEATHER_URL}${queryParams}`,

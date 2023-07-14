@@ -2,6 +2,7 @@ import { Scenes } from 'telegraf';
 import { GET_WEATHER_SCENE } from '../../constants/scenes/weatherScenesConst.js';
 import { getWeatherInCity } from '../../api/weatherApi.js';
 import messages from '../../constants/messages/messages.js';
+import getWeatherReplyText from '../../utils/getWeatherReplyText.js';
 
 const askCity = (ctx) => {
   ctx.reply(messages.askCity);
@@ -11,12 +12,8 @@ const askCity = (ctx) => {
 const getWeather = async (ctx) => {
   try {
     const weatherInfo = await getWeatherInCity(ctx.message.text);
-    ctx.reply(
-      `Weather in ${weatherInfo.name}:
-    main: ${weatherInfo.weather[0].main}
-    description: ${weatherInfo.weather[0].description}
-    temp: ${weatherInfo.main.temp}`,
-    );
+    const weatherReplyText = getWeatherReplyText(weatherInfo);
+    ctx.replyWithHTML(weatherReplyText);
   } catch (error) {
     ctx.reply(messages.serverError);
     return;
