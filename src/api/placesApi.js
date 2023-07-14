@@ -5,10 +5,19 @@ import {
 } from '../constants/api/placesApiConst.js';
 import { PLACES_API_TOKEN } from '../constants/environment.js/environment.js';
 import getCityInfo from './getCityInfo.js';
+import createQueryParams from '../utils/createQueryParams.js';
 
 const getPlacesByCity = async (city) => {
   const cityInfo = await getCityInfo(city);
-  const queryParams = `?apikey=${PLACES_API_TOKEN}&radius=1000&limit=5&lon=${cityInfo.lon}&lat=${cityInfo.lat}&rate=2&format=json`;
+  const queryParams = createQueryParams({
+    apikey: PLACES_API_TOKEN,
+    radius: 1000,
+    limit: 5,
+    lon: cityInfo.lon,
+    lat: cityInfo.lat,
+    rate: 2,
+    format: 'json',
+  });
 
   const places = await axios.get(
     `${BASE_PLACES_API_URL}${GET_PLACES_API_URL}${queryParams}`,
