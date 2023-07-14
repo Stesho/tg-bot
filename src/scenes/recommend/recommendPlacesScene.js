@@ -1,6 +1,6 @@
 import { Scenes } from 'telegraf';
 import { RECOMMEND_PLACES_SCENE } from '../../constants/scenes/recommendScenesConst.js';
-import getPlacesByCity from '../../api/placesApi.js';
+import getPlacesByCity from '../../api/places/getPlacesByCity.js';
 import messages from '../../constants/messages/messages.js';
 import getPlacesReplyText from '../../utils/getPlacesReplyText.js';
 

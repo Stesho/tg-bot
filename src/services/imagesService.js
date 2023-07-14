@@ -1,4 +1,4 @@
-import { getRandomImage } from '../api/imagesApi.js';
+import { getRandomImage } from '../api/images/getRandomImage.js';
 import messages from '../constants/messages/messages.js';
 
 const getRandomImageByQuery = async (ctx, query) => {

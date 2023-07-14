@@ -4,7 +4,7 @@ import {
   UNSUBSCRIBE_WEATHER_SCENE,
 } from '../../constants/scenes/weatherScenesConst.js';
 import schedule from 'node-schedule';
-import { getWeatherInCity } from '../../api/weatherApi.js';
+import { getWeatherInCity } from '../../api/weather/getWeatherInCity.js';
 import validateTime from '../../utils/validateTime.js';
 import parseTime from '../../utils/parseTime.js';
 import messages from '../../constants/messages/messages.js';

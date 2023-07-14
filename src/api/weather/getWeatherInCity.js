@@ -2,9 +2,9 @@ import axios from 'axios';
 import {
   BASE_WEATHER_API_URL as BASE_URL,
   GET_WEATHER_API_URL as GET_WEATHER_URL,
-} from '../constants/api/weatherApiConst.js';
-import { WEATHER_API_TOKEN } from '../constants/environment.js/environment.js';
-import createQueryParams from '../utils/createQueryParams.js';
+} from '../../constants/api/weatherApiConst.js';
+import { WEATHER_API_TOKEN } from '../../constants/environment.js/environment.js';
+import createQueryParams from '../../utils/createQueryParams.js';
 
 const getWeatherInCity = async (city) => {
   const queryParams = createQueryParams({

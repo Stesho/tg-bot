@@ -1,6 +1,6 @@
 import { Scenes } from 'telegraf';
 import { GET_WEATHER_SCENE } from '../../constants/scenes/weatherScenesConst.js';
-import { getWeatherInCity } from '../../api/weatherApi.js';
+import { getWeatherInCity } from '../../api/weather/getWeatherInCity.js';
 import messages from '../../constants/messages/messages.js';
 import getWeatherReplyText from '../../utils/getWeatherReplyText.js';
 

@@ -1,11 +1,11 @@
-import getCityInfo from './getCityInfo.js';
+import getCityInfo from '../places/getCityInfo.js';
 import axios from 'axios';
 import {
   BASE_EVENTS_API_URL,
   GET_EVENTS_API_URL,
-} from '../constants/api/eventsApiConst.js';
-import { EVENTS_API_TOKEN } from '../constants/environment.js/environment.js';
-import createQueryParams from '../utils/createQueryParams.js';
+} from '../../constants/api/eventsApiConst.js';
+import { EVENTS_API_TOKEN } from '../../constants/environment.js/environment.js';
+import createQueryParams from '../../utils/createQueryParams.js';
 
 const getEventsByCity = async (city) => {
   const cityInfo = await getCityInfo(city);

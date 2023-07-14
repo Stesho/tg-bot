@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { PLACES_API_TOKEN } from '../constants/environment.js/environment.js';
+import { PLACES_API_TOKEN } from '../../constants/environment.js/environment.js';
 import {
   BASE_PLACES_API_URL,
   GET_CITY_INFO_API_URL,
-} from '../constants/api/placesApiConst.js';
-import createQueryParams from '../utils/createQueryParams.js';
+} from '../../constants/api/placesApiConst.js';
+import createQueryParams from '../../utils/createQueryParams.js';
 
 const getCityInfo = async (city) => {
   const queryParams = createQueryParams({
