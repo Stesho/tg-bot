@@ -55,6 +55,7 @@ Click on one of them to change the task, delete it, or set a notification.`,
   invalidTime: '❗ Invalid time',
   userSubscribedSuccessfully: 'You are successfully subscribe ✅',
   loading: 'Loading...',
+  unknownCommand: '❗ Unknown command',
 };
 
 export default messages;

@@ -10,10 +10,15 @@ const start = (ctx) => {
 };
 
 const help = (ctx) => ctx.reply(messages.help);
+
 const weather = (ctx) => ctx.scene.enter(WEATHER_SCENE);
+
 const dog = (ctx) => getRandomImageByQuery(ctx, 'dog');
+
 const cat = (ctx) => getRandomImageByQuery(ctx, 'cat');
+
 const tasks = (ctx) => ctx.scene.enter(TASKS_SCENE);
+
 const recommend = (ctx) => ctx.scene.enter(RECOMMEND_SCENE);
 
-export { start, help, weather, dog, cat, tasks, recommend };
+export { start, help, weather, cat, dog, tasks, recommend };
