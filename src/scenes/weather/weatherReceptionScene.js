@@ -10,14 +10,15 @@ const askCity = (ctx) => {
 };
 
 const getWeather = async (ctx) => {
-  try {
-    const weatherInfo = await getWeatherInCity(ctx.message.text);
-    const weatherReplyText = getWeatherReplyText(weatherInfo);
-    ctx.replyWithHTML(weatherReplyText);
-  } catch (error) {
-    ctx.reply(messages.serverError);
-    return;
+  const weatherInfo = await getWeatherInCity(ctx.message.text);
+
+  if (weatherInfo.isError) {
+    return ctx.reply(weatherInfo.data);
   }
+
+  const weatherReplyText = getWeatherReplyText(weatherInfo.data);
+  ctx.replyWithHTML(weatherReplyText);
+
   return ctx.scene.leave();
 };
 

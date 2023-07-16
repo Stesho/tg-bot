@@ -48,6 +48,9 @@ const startBot = () => {
 
   bot.use(session());
   bot.use(stage.middleware());
+  // bot.catch((err, ctx) => {
+  //   console.log(`Ooops, encountered an error for ${ctx.updateType}`, err)
+  // })
 
   setBotCommandHandlers(bot, commands);
 

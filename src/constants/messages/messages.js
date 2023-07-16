@@ -51,11 +51,13 @@ Click on one of them to change the task, delete it, or set a notification.`,
   weatherRequest: '⛅ Get weather from city',
   weatherSubscribe: '📌 Subscribe to weather notifications',
   weatherUnsubscribe: '❌ Unsubscribe from weather notifications',
-  cityNotFound: '❗ City not found. Try again later',
   invalidTime: '❗ Invalid time',
   userSubscribedSuccessfully: 'You are successfully subscribe ✅',
   loading: 'Loading...',
   unknownCommand: '❗ Unknown command',
+  requestError: '❗ Request error. Try later',
+  unknownError: '❗ Unknown error. Try later',
+  cityNotFoundError: '❗ City not found. Try again',
 };
 
 export default messages;

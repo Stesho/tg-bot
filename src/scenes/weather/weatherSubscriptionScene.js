@@ -20,42 +20,39 @@ const askCity = (ctx) => {
 };
 
 const askTime = async (ctx) => {
-  try {
-    await getWeatherInCity(ctx.message.text);
-    ctx.wizard.state.weather.city = ctx.message.text;
-    ctx.reply(messages.askTime);
-    ctx.wizard.next();
-  } catch (error) {
-    ctx.reply(messages.cityNotFound);
+  const weatherInfo = await getWeatherInCity(ctx.message.text);
+
+  if (weatherInfo.isError) {
+    return ctx.reply(weatherInfo.data);
   }
+
+  ctx.wizard.state.weather.city = ctx.message.text;
+  ctx.reply(messages.askTime);
+
+  ctx.wizard.next();
 };
 
 const subscribe = async (ctx) => {
-  try {
-    const city = ctx.wizard.state.weather.city;
-    const time = ctx.message.text;
+  const city = ctx.wizard.state.weather.city;
+  const time = ctx.message.text;
 
-    if (!validateTime(time)) {
-      throw new Error(messages.invalidTime);
-    }
-
-    const [hours, minutes] = parseTime(time);
-    schedule.scheduleJob(
-      UNSUBSCRIBE_WEATHER_SCENE,
-      `${minutes} ${hours} * * *`,
-      async () => {
-        const weatherInfo = await getWeatherInCity(city);
-        const weatherReplyText = getWeatherReplyText(weatherInfo);
-        ctx.replyWithHTML(weatherReplyText);
-      },
-    );
-
-    ctx.reply(messages.userSubscribedSuccessfully);
-    return ctx.scene.leave();
-  } catch (error) {
-    ctx.reply(messages.invalidTime);
-    return;
+  if (!validateTime(time)) {
+    return ctx.reply(messages.invalidTime);
   }
+
+  const [hours, minutes] = parseTime(time);
+  schedule.scheduleJob(
+    UNSUBSCRIBE_WEATHER_SCENE,
+    `${minutes} ${hours} * * *`,
+    async () => {
+      const weatherInfo = await getWeatherInCity(city);
+      const weatherReplyText = getWeatherReplyText(weatherInfo.data);
+      ctx.replyWithHTML(weatherReplyText);
+    },
+  );
+
+  ctx.reply(messages.userSubscribedSuccessfully);
+  return ctx.scene.leave();
 };
 
 const weatherSubscriptionScene = new Scenes.WizardScene(
