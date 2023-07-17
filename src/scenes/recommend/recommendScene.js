@@ -1,4 +1,4 @@
-import { Composer, Markup, Scenes } from 'telegraf';
+import { Markup, Scenes } from 'telegraf';
 import {
   RECOMMEND_EVENTS_SCENE,
   RECOMMEND_PLACES_SCENE,

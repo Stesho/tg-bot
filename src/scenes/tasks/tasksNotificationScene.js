@@ -1,7 +1,10 @@
 import parseTime from '../../utils/parseTime.js';
 import schedule from 'node-schedule';
 import { Markup, Scenes } from 'telegraf';
-import { TASK_NOTIFICATION_SCENE } from '../../constants/scenes/tasksScenesConst.js';
+import {
+  TASK_NOTIFICATION_SCENE,
+  TASK_OPTIONS_SCENE,
+} from '../../constants/scenes/tasksScenesConst.js';
 import getOneTask from '../../db/task/getOneTask.js';
 import messages from '../../constants/messages/messages.js';
 import validateTime from '../../utils/validateTime.js';
@@ -57,7 +60,7 @@ const tasksNotificationScene = new Scenes.WizardScene(
 );
 
 tasksNotificationScene.action('back', async (ctx) => {
-  return ctx.scene.enter('selectTaskOptionMenu', ctx.scene.state);
+  return ctx.scene.enter(TASK_OPTIONS_SCENE, ctx.scene.state);
 });
 
 export default tasksNotificationScene;

@@ -1,5 +1,10 @@
 import { Markup, Scenes } from 'telegraf';
-import { TASK_UPDATING_SCENE } from '../../constants/scenes/tasksScenesConst.js';
+import {
+  TASK_CONTENT_UPDATING_SCENE,
+  TASK_OPTIONS_SCENE,
+  TASK_TITLE_UPDATING_SCENE,
+  TASK_UPDATING_SCENE,
+} from '../../constants/scenes/tasksScenesConst.js';
 import updateTask from '../../db/task/updateTask.js';
 import messages from '../../constants/messages/messages.js';
 
@@ -8,25 +13,35 @@ const tasksUpdatingScene = new Scenes.BaseScene(TASK_UPDATING_SCENE);
 tasksUpdatingScene.enter(async (ctx) => {
   await ctx.editMessageReplyMarkup({
     inline_keyboard: [
-      [Markup.button.callback(messages.taskEditTitle, `edit-title`)],
-      [Markup.button.callback(messages.taskEditContent, `edit-content`)],
+      [
+        Markup.button.callback(
+          messages.taskEditTitle,
+          TASK_TITLE_UPDATING_SCENE,
+        ),
+      ],
+      [
+        Markup.button.callback(
+          messages.taskEditContent,
+          TASK_CONTENT_UPDATING_SCENE,
+        ),
+      ],
       [Markup.button.callback(messages.backButton, `back`)],
     ],
   });
 });
 
-tasksUpdatingScene.action('edit-title', async (ctx) => {
+tasksUpdatingScene.action(TASK_TITLE_UPDATING_SCENE, async (ctx) => {
   ctx.scene.state.fieldForUpdating = 'title';
   ctx.reply(messages.askTitle);
 });
 
-tasksUpdatingScene.action('edit-content', async (ctx) => {
+tasksUpdatingScene.action(TASK_CONTENT_UPDATING_SCENE, async (ctx) => {
   ctx.scene.state.fieldForUpdating = 'content';
   ctx.reply(messages.askContent);
 });
 
 tasksUpdatingScene.action('back', async (ctx) => {
-  return ctx.scene.enter('selectTaskOptionMenu', ctx.scene.state);
+  return ctx.scene.enter(TASK_OPTIONS_SCENE, ctx.scene.state);
 });
 
 tasksUpdatingScene.hears(/./, async (ctx) => {

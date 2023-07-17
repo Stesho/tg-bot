@@ -1,5 +1,9 @@
 import { Markup, Scenes } from 'telegraf';
-import { TASK_GETTING_SCENE } from '../../constants/scenes/tasksScenesConst.js';
+import {
+  TASK_GETTING_SCENE,
+  TASK_OPTIONS_SCENE,
+  TASK_SELECT_SCENE,
+} from '../../constants/scenes/tasksScenesConst.js';
 import getAllTasks from '../../db/task/getAllTasks.js';
 import messages from '../../constants/messages/messages.js';
 
@@ -17,14 +21,12 @@ tasksGettingScene.enter(async (ctx) => {
   const tasksButtons = tasks.data.map((task, index) => [
     Markup.button.callback(
       `${index + 1}. ${task.title}`,
-      `choose-task_${task.id}`,
+      `${TASK_SELECT_SCENE}_${task.id}`,
     ),
   ]);
 
-  const messageText = messages.taskListTitle;
-
   await ctx.editMessageText(
-    tasksButtons.length > 0 ? messageText : messages.emptyTaskList,
+    tasksButtons.length > 0 ? messages.taskListTitle : messages.emptyTaskList,
     {
       reply_markup: {
         inline_keyboard: tasksButtons,
@@ -33,11 +35,14 @@ tasksGettingScene.enter(async (ctx) => {
   );
 });
 
-tasksGettingScene.action(/choose-task_(.+)/, async (ctx) => {
-  const taskId = await ctx.match.input.split('_')[1];
-  const state = ctx.scene.state;
+tasksGettingScene.action(
+  new RegExp(`${TASK_SELECT_SCENE}_(.+)`),
+  async (ctx) => {
+    const taskId = await ctx.match.input.split('_')[1];
+    const state = ctx.scene.state;
 
-  return ctx.scene.enter('selectTaskOptionMenu', { ...state, taskId });
-});
+    return ctx.scene.enter(TASK_OPTIONS_SCENE, { ...state, taskId });
+  },
+);
 
 export default tasksGettingScene;

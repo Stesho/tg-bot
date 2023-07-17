@@ -4,7 +4,6 @@ import getPlacesByCoords from '../../api/places/getPlacesByCoords.js';
 import messages from '../../constants/messages/messages.js';
 import getPlacesReplyText from '../../utils/getPlacesReplyText.js';
 import getCityInfo from '../../api/places/getCityInfo.js';
-import getEventsByCountry from '../../api/events/getEventsByCountry.js';
 
 const recommendPlacesScene = new Scenes.WizardScene(
   RECOMMEND_PLACES_SCENE,

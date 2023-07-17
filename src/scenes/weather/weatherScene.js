@@ -14,12 +14,17 @@ weatherScene.enter((ctx) => {
   ctx.reply(
     messages.weatherSceneTitle,
     Markup.inlineKeyboard([
-      [Markup.button.callback(messages.weatherRequest, 'get-weather')],
-      [Markup.button.callback(messages.weatherSubscribe, 'subscribe-weather')],
+      [Markup.button.callback(messages.weatherRequest, GET_WEATHER_SCENE)],
+      [
+        Markup.button.callback(
+          messages.weatherSubscribe,
+          SUBSCRIBE_WEATHER_SCENE,
+        ),
+      ],
       [
         Markup.button.callback(
           messages.weatherUnsubscribe,
-          'unsubscribe-weather',
+          UNSUBSCRIBE_WEATHER_SCENE,
         ),
       ],
     ]).resize(),
