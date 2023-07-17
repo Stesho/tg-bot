@@ -67,6 +67,7 @@ Click on one of them to change the task, delete it, or set a notification.`,
   updateTaskError: '❗ Error in updating task',
   getEventsError: '❗ Error in finding events',
   getPlacesError: '❗ Error in finding places',
+  getImageError: '❗ Error in getting image. Try again later',
 };
 
 export default messages;

@@ -6,25 +6,36 @@ import {
 import { IMAGE_API_TOKEN } from '../../constants/environment.js/environment.js';
 import getRandomIntegerInRange from '../../utils/getRandomIntegerInRange.js';
 import createQueryParams from '../../utils/createQueryParams.js';
+import messages from '../../constants/messages/messages.js';
 
 const getRandomImage = async (query) => {
-  const pageNumber = getRandomIntegerInRange(1, 999);
-  const queryParams = createQueryParams({
-    query,
-    page: pageNumber,
-    per_page: 1,
-  });
+  try {
+    const pageNumber = getRandomIntegerInRange(1, 999);
+    const queryParams = createQueryParams({
+      query,
+      page: pageNumber,
+      per_page: 1,
+    });
 
-  const response = await axios.get(
-    `${BASE_URL}${SEARCH_IMAGE_URL}${queryParams}`,
-    {
-      headers: {
-        Authorization: `${IMAGE_API_TOKEN}`,
+    const response = await axios.get(
+      `${BASE_URL}${SEARCH_IMAGE_URL}${queryParams}`,
+      {
+        headers: {
+          Authorization: `${IMAGE_API_TOKEN}`,
+        },
       },
-    },
-  );
+    );
 
-  return response.data;
+    return {
+      isError: false,
+      data: response.data,
+    };
+  } catch (error) {
+    return {
+      isError: true,
+      data: messages.getImageError,
+    };
+  }
 };
 
-export { getRandomImage };
+export default getRandomImage;
