@@ -1,6 +1,6 @@
-const validateTime = (time) => {
-  const timeRegExp = /^\d{2}:?\d{2}(am|pm)?$/;
+const isValidateTime = (time) => {
+  const timeRegExp = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
   return timeRegExp.test(time);
 };
 
-export default validateTime;
+export default isValidateTime;

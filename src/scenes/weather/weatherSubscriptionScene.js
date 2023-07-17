@@ -5,10 +5,10 @@ import {
 } from '../../constants/scenes/weatherScenesConst.js';
 import schedule from 'node-schedule';
 import { getWeatherInCity } from '../../api/weather/getWeatherInCity.js';
-import validateTime from '../../utils/validateTime.js';
 import parseTime from '../../utils/parseTime.js';
 import messages from '../../constants/messages/messages.js';
 import getWeatherReplyText from '../../utils/getWeatherReplyText.js';
+import isValidateTime from '../../utils/validateTime.js';
 
 const askCity = (ctx) => {
   ctx.wizard.state.weather = {
@@ -36,7 +36,7 @@ const subscribe = async (ctx) => {
   const city = ctx.wizard.state.weather.city;
   const time = ctx.message.text;
 
-  if (!validateTime(time)) {
+  if (!isValidateTime(time)) {
     return ctx.reply(messages.invalidTime);
   }
 

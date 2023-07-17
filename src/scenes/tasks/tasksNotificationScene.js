@@ -7,12 +7,12 @@ import {
 } from '../../constants/scenes/tasksScenesConst.js';
 import getOneTask from '../../db/task/getOneTask.js';
 import messages from '../../constants/messages/messages.js';
-import validateTime from '../../utils/validateTime.js';
+import isValidateTime from '../../utils/validateTime.js';
 
 const setNotification = async (ctx) => {
   const time = ctx.message.text;
 
-  if (!validateTime(time)) {
+  if (!isValidateTime(time)) {
     return ctx.reply(messages.invalidTime);
   }
 
