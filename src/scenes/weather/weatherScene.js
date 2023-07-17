@@ -8,6 +8,7 @@ import {
 import schedule from 'node-schedule';
 import textMessages from '../../constants/messages/textMessages.js';
 import buttonsMessages from '../../constants/messages/buttonsMessages.js';
+import repliesMessages from '../../constants/messages/repliesMessages.js';
 
 const weatherScene = new Scenes.BaseScene(WEATHER_SCENE);
 
@@ -47,6 +48,7 @@ weatherScene.action(SUBSCRIBE_WEATHER_SCENE, (ctx) => {
 
 weatherScene.action(UNSUBSCRIBE_WEATHER_SCENE, (ctx) => {
   schedule.cancelJob(UNSUBSCRIBE_WEATHER_SCENE);
+  ctx.reply(repliesMessages.userUnsubscribedSuccessfully);
   return ctx.scene.leave();
 });
 

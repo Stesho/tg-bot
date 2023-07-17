@@ -13,6 +13,10 @@ const recommendEventsScene = new Scenes.WizardScene(
     return ctx.wizard.next();
   },
   async (ctx) => {
+    if (!ctx.message?.text) {
+      return ctx.reply(repliesMessages.invalidMessage);
+    }
+
     const city = ctx.message.text;
     const cityInfo = await getCityInfo(city);
     const events = await getEventsByCountry(cityInfo.data.country);

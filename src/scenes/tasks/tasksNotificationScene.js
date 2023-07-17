@@ -13,6 +13,10 @@ import errorsMessages from '../../constants/messages/errorsMessages.js';
 import repliesMessages from '../../constants/messages/repliesMessages.js';
 
 const setNotification = async (ctx) => {
+  if (!ctx.message?.text) {
+    return ctx.reply(repliesMessages.invalidMessage);
+  }
+
   const time = ctx.message.text;
 
   if (!isValidateTime(time)) {

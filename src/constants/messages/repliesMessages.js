@@ -10,11 +10,13 @@ const repliesMessages = {
   taskDeletedSuccessfully: 'Task successfully deleted ✅',
   taskUpdatedSuccessfully: 'Task successfully updated ✅',
   userSubscribedSuccessfully: 'You are successfully subscribe ✅',
+  userUnsubscribedSuccessfully: 'You are successfully unsubscribe ✅',
   loading: 'Loading...',
   invalidTime: '❗ Invalid time',
   unknownCommand: '❗ Unknown command',
   invalidTitle: '❗ Invalid title',
   invalidContent: '❗ Invalid content',
+  invalidMessage: '❗ Invalid message. Try again',
 };
 
 export default repliesMessages;

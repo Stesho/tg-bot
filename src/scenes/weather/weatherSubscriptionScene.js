@@ -20,6 +20,10 @@ const askCity = (ctx) => {
 };
 
 const askTime = async (ctx) => {
+  if (!ctx.message?.text) {
+    return ctx.reply(repliesMessages.invalidMessage);
+  }
+
   const weatherInfo = await getWeatherInCity(ctx.message.text);
 
   if (weatherInfo.isError) {
@@ -33,6 +37,10 @@ const askTime = async (ctx) => {
 };
 
 const subscribe = async (ctx) => {
+  if (!ctx.message?.text) {
+    return ctx.reply(repliesMessages.invalidMessage);
+  }
+
   const city = ctx.wizard.state.weather.city;
   const time = ctx.message.text;
 
