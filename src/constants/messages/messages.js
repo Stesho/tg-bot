@@ -65,6 +65,8 @@ Click on one of them to change the task, delete it, or set a notification.`,
   getOneTaskError: '❗ Error in finding task',
   deleteTaskError: '❗ Error in deleting task',
   updateTaskError: '❗ Error in updating task',
+  getEventsError: '❗ Error in finding events',
+  getPlacesError: '❗ Error in finding places',
 };
 
 export default messages;
