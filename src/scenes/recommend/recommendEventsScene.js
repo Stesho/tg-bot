@@ -19,7 +19,12 @@ const recommendEventsScene = new Scenes.WizardScene(
 
     const city = ctx.message.text;
     const cityInfo = await getCityInfo(city);
-    const events = await getEventsByCountry(cityInfo.data.country);
+
+    if (cityInfo.data.length === 0) {
+      return ctx.reply(errorsMessages.cityNotFoundError);
+    }
+
+    const events = await getEventsByCountry(cityInfo.data[0].country);
 
     if (events.isError) {
       return ctx.reply(events.data);

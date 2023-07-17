@@ -16,7 +16,7 @@ const askTitle = async (ctx) => {
 };
 
 const askContent = async (ctx) => {
-  if (!ctx.message.text) {
+  if (!ctx.message?.text) {
     return ctx.reply(repliesMessages.invalidTitle);
   }
 
@@ -27,7 +27,7 @@ const askContent = async (ctx) => {
 };
 
 const createTask = async (ctx) => {
-  if (!ctx.message.text) {
+  if (!ctx.message?.text) {
     return ctx.reply(repliesMessages.invalidContent);
   }
 

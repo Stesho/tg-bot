@@ -53,14 +53,14 @@ const setNotification = async (ctx) => {
 const tasksNotificationScene = new Scenes.WizardScene(
   TASK_NOTIFICATION_SCENE,
   async (ctx) => {
-    await ctx.editMessageText(textMessages.taskNotificationSceneTitle, {
-      reply_markup: {
-        inline_keyboard: [
-          [Markup.button.callback(buttonsMessages.backButton, `back`)],
-        ],
-      },
+    await ctx.editMessageReplyMarkup({
+      inline_keyboard: [
+        [Markup.button.callback(buttonsMessages.backButton, `back`)],
+      ],
     });
+
     await ctx.reply(repliesMessages.askTime);
+
     return ctx.wizard.next();
   },
   setNotification,

@@ -19,9 +19,14 @@ const recommendPlacesScene = new Scenes.WizardScene(
 
     const city = ctx.message.text;
     const cityInfo = await getCityInfo(city);
+
+    if (cityInfo.data.length === 0) {
+      return ctx.reply(errorsMessages.cityNotFoundError);
+    }
+
     const places = await getPlacesByCoords(
-      cityInfo.data.lon,
-      cityInfo.data.lat,
+      cityInfo.data[0].lon,
+      cityInfo.data[0].lat,
     );
 
     if (places.isError) {

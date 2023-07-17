@@ -10,10 +10,20 @@ import deleteTask from '../../db/task/deleteTask.js';
 import textMessages from '../../constants/messages/textMessages.js';
 import buttonsMessages from '../../constants/messages/buttonsMessages.js';
 import repliesMessages from '../../constants/messages/repliesMessages.js';
+import getOneTask from '../../db/task/getOneTask.js';
 
 const tasksOptionsScene = new Scenes.BaseScene(TASK_OPTIONS_SCENE);
 tasksOptionsScene.enter(async (ctx) => {
-  await ctx.editMessageText(textMessages.taskOptionsSceneTitle, {
+  const taskId = ctx.scene.state.taskId;
+  const task = await getOneTask(taskId);
+
+  if (task.isError) {
+    return ctx.reply(task.data);
+  }
+
+  ctx.scene.state.task = task.data;
+
+  await ctx.editMessageText(textMessages.taskOverview(task.data), {
     reply_markup: {
       inline_keyboard: [
         [

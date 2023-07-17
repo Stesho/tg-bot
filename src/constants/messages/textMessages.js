@@ -20,8 +20,11 @@ const textMessages = {
 Click on one of them to change the task, delete it, or set a notification.`,
   emptyTaskList: 'There are no tasks yet',
   taskNotificationSceneTitle: 'Set notification taskId',
-  taskOptionsSceneTitle:
-    'Click one of the buttons to set a notification, edit a task, delete a task, or return to the previous menu',
+  taskOverview: (task) => `
+${task.title}
+
+${task.content}
+  `,
   taskSceneTitle:
     'Select one of the options below to view your tasks or add another one',
   weatherSceneTitle:
