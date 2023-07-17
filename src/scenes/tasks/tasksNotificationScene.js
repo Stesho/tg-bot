@@ -12,6 +12,18 @@ import buttonsMessages from '../../constants/messages/buttonsMessages.js';
 import errorsMessages from '../../constants/messages/errorsMessages.js';
 import repliesMessages from '../../constants/messages/repliesMessages.js';
 
+const askTime = async (ctx) => {
+  await ctx.editMessageReplyMarkup({
+    inline_keyboard: [
+      [Markup.button.callback(buttonsMessages.backButton, `back`)],
+    ],
+  });
+
+  await ctx.reply(repliesMessages.askTime);
+
+  return ctx.wizard.next();
+};
+
 const setNotification = async (ctx) => {
   if (!ctx.message?.text) {
     return ctx.reply(repliesMessages.invalidMessage);
@@ -52,17 +64,7 @@ const setNotification = async (ctx) => {
 
 const tasksNotificationScene = new Scenes.WizardScene(
   TASK_NOTIFICATION_SCENE,
-  async (ctx) => {
-    await ctx.editMessageReplyMarkup({
-      inline_keyboard: [
-        [Markup.button.callback(buttonsMessages.backButton, `back`)],
-      ],
-    });
-
-    await ctx.reply(repliesMessages.askTime);
-
-    return ctx.wizard.next();
-  },
+  askTime,
   setNotification,
 );
 
