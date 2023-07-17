@@ -6,7 +6,7 @@ import {
 } from '../../constants/api/placesApiConst.js';
 import createQueryParams from '../../utils/createQueryParams.js';
 import handleError from '../../utils/handleError.js';
-import messages from '../../constants/messages/messages.js';
+import errorsMessages from '../../constants/messages/errorsMessages.js';
 
 const getCityInfo = async (city) => {
   try {
@@ -24,7 +24,7 @@ const getCityInfo = async (city) => {
       data: cityInfo.data,
     };
   } catch (error) {
-    return handleError(error, messages.cityNotFoundError);
+    return handleError(error, () => errorsMessages.cityNotFoundError);
   }
 };
 

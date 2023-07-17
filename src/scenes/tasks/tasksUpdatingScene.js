@@ -6,7 +6,8 @@ import {
   TASK_UPDATING_SCENE,
 } from '../../constants/scenes/tasksScenesConst.js';
 import updateTask from '../../db/task/updateTask.js';
-import messages from '../../constants/messages/messages.js';
+import buttonsMessages from '../../constants/messages/buttonsMessages.js';
+import repliesMessages from '../../constants/messages/repliesMessages.js';
 
 const tasksUpdatingScene = new Scenes.BaseScene(TASK_UPDATING_SCENE);
 
@@ -15,29 +16,29 @@ tasksUpdatingScene.enter(async (ctx) => {
     inline_keyboard: [
       [
         Markup.button.callback(
-          messages.taskEditTitle,
+          buttonsMessages.taskEditTitle,
           TASK_TITLE_UPDATING_SCENE,
         ),
       ],
       [
         Markup.button.callback(
-          messages.taskEditContent,
+          buttonsMessages.taskEditContent,
           TASK_CONTENT_UPDATING_SCENE,
         ),
       ],
-      [Markup.button.callback(messages.backButton, `back`)],
+      [Markup.button.callback(buttonsMessages.backButton, `back`)],
     ],
   });
 });
 
 tasksUpdatingScene.action(TASK_TITLE_UPDATING_SCENE, async (ctx) => {
   ctx.scene.state.fieldForUpdating = 'title';
-  ctx.reply(messages.askTitle);
+  ctx.reply(repliesMessages.askTitle);
 });
 
 tasksUpdatingScene.action(TASK_CONTENT_UPDATING_SCENE, async (ctx) => {
   ctx.scene.state.fieldForUpdating = 'content';
-  ctx.reply(messages.askContent);
+  ctx.reply(repliesMessages.askContent);
 });
 
 tasksUpdatingScene.action('back', async (ctx) => {
@@ -48,11 +49,7 @@ tasksUpdatingScene.hears(/./, async (ctx) => {
   const { taskId, fieldForUpdating } = ctx.scene.state;
 
   if (!fieldForUpdating) {
-    return ctx.reply(messages.askFieldForUpdate);
-  }
-
-  if (!ctx.update?.message?.text?.length) {
-    return ctx.reply(messages.emptyMessage);
+    return ctx.reply(repliesMessages.askFieldForUpdate);
   }
 
   const updatedTask = await updateTask(taskId, {
@@ -63,7 +60,7 @@ tasksUpdatingScene.hears(/./, async (ctx) => {
     return ctx.reply(updatedTask.data);
   }
 
-  ctx.reply(messages.taskUpdatedSuccessfully);
+  ctx.reply(repliesMessages.taskUpdatedSuccessfully);
   ctx.scene.state.fieldForUpdating = null;
 });
 

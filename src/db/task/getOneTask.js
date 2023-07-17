@@ -1,5 +1,5 @@
 import TaskSchema from '../schemas/taskSchema.js';
-import messages from '../../constants/messages/messages.js';
+import errorsMessages from '../../constants/messages/errorsMessages.js';
 
 const getOneTask = async (taskId) => {
   try {
@@ -11,7 +11,7 @@ const getOneTask = async (taskId) => {
   } catch (error) {
     return {
       isError: true,
-      data: messages.getOneTaskError,
+      data: errorsMessages.getOneTaskError,
     };
   }
 };

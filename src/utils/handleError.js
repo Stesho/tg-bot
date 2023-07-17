@@ -1,4 +1,4 @@
-import messages from '../constants/messages/messages.js';
+import textMessages from '../constants/messages/textMessages.js';
 
 const handleError = (error, errorHandler) => {
   if (error.response) {
@@ -9,13 +9,13 @@ const handleError = (error, errorHandler) => {
   } else if (error.request) {
     return {
       isError: true,
-      data: messages.requestError,
+      data: textMessages.requestError,
     };
   }
 
   return {
     isError: true,
-    data: messages.unknownError,
+    data: textMessages.unknownError,
   };
 };
 

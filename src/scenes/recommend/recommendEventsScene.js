@@ -1,14 +1,15 @@
 import { Scenes } from 'telegraf';
 import { RECOMMEND_EVENTS_SCENE } from '../../constants/scenes/recommendScenesConst.js';
 import getEventsByCountry from '../../api/events/getEventsByCountry.js';
-import messages from '../../constants/messages/messages.js';
 import getEventsReplyText from '../../utils/getEventsReplyText.js';
 import getCityInfo from '../../api/places/getCityInfo.js';
+import errorsMessages from '../../constants/messages/errorsMessages.js';
+import repliesMessages from '../../constants/messages/repliesMessages.js';
 
 const recommendEventsScene = new Scenes.WizardScene(
   RECOMMEND_EVENTS_SCENE,
   async (ctx) => {
-    await ctx.reply(messages.askCity);
+    await ctx.reply(repliesMessages.askCity);
     return ctx.wizard.next();
   },
   async (ctx) => {
@@ -21,7 +22,7 @@ const recommendEventsScene = new Scenes.WizardScene(
     }
 
     if (events.data.length === 0) {
-      return ctx.reply(messages.cityNotFoundError);
+      return ctx.reply(errorsMessages.cityNotFoundError);
     }
 
     const replyText = getEventsReplyText(events.data);

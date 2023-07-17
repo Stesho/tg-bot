@@ -4,23 +4,24 @@ import {
   RECOMMEND_PLACES_SCENE,
   RECOMMEND_SCENE,
 } from '../../constants/scenes/recommendScenesConst.js';
-import messages from '../../constants/messages/messages.js';
+import textMessages from '../../constants/messages/textMessages.js';
+import buttonsMessages from '../../constants/messages/buttonsMessages.js';
 
 const recommendScene = new Scenes.BaseScene(RECOMMEND_SCENE);
 
 recommendScene.enter(async (ctx) => {
   await ctx.reply(
-    messages.recommendSceneTitle,
+    textMessages.recommendSceneTitle,
     Markup.inlineKeyboard([
       [
         Markup.button.callback(
-          messages.recommendEvents,
+          buttonsMessages.recommendEvents,
           RECOMMEND_EVENTS_SCENE,
         ),
       ],
       [
         Markup.button.callback(
-          messages.recommendPlaces,
+          buttonsMessages.recommendPlaces,
           RECOMMEND_PLACES_SCENE,
         ),
       ],

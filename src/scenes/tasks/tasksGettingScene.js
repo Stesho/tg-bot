@@ -5,7 +5,7 @@ import {
   TASK_SELECT_SCENE,
 } from '../../constants/scenes/tasksScenesConst.js';
 import getAllTasks from '../../db/task/getAllTasks.js';
-import messages from '../../constants/messages/messages.js';
+import textMessages from '../../constants/messages/textMessages.js';
 
 const tasksGettingScene = new Scenes.BaseScene(TASK_GETTING_SCENE);
 
@@ -26,7 +26,9 @@ tasksGettingScene.enter(async (ctx) => {
   ]);
 
   await ctx.editMessageText(
-    tasksButtons.length > 0 ? messages.taskListTitle : messages.emptyTaskList,
+    tasksButtons.length > 0
+      ? textMessages.taskListTitle
+      : textMessages.emptyTaskList,
     {
       reply_markup: {
         inline_keyboard: tasksButtons,

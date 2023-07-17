@@ -1,4 +1,3 @@
-import getCityInfo from '../places/getCityInfo.js';
 import axios from 'axios';
 import {
   BASE_EVENTS_API_URL,
@@ -7,7 +6,7 @@ import {
 import { EVENTS_API_TOKEN } from '../../constants/environment.js/environment.js';
 import createQueryParams from '../../utils/createQueryParams.js';
 import handleError from '../../utils/handleError.js';
-import messages from '../../constants/messages/messages.js';
+import errorsMessages from '../../constants/messages/errorsMessages.js';
 
 const getEventsByCountry = async (country) => {
   try {
@@ -31,7 +30,7 @@ const getEventsByCountry = async (country) => {
       data: events.data,
     };
   } catch (error) {
-    return handleError(error, messages.getEventsError);
+    return handleError(error, () => errorsMessages.getEventsError);
   }
 };
 

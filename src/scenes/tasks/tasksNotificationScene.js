@@ -6,14 +6,17 @@ import {
   TASK_OPTIONS_SCENE,
 } from '../../constants/scenes/tasksScenesConst.js';
 import getOneTask from '../../db/task/getOneTask.js';
-import messages from '../../constants/messages/messages.js';
+import textMessages from '../../constants/messages/textMessages.js';
 import isValidateTime from '../../utils/validateTime.js';
+import buttonsMessages from '../../constants/messages/buttonsMessages.js';
+import errorsMessages from '../../constants/messages/errorsMessages.js';
+import repliesMessages from '../../constants/messages/repliesMessages.js';
 
 const setNotification = async (ctx) => {
   const time = ctx.message.text;
 
   if (!isValidateTime(time)) {
-    return ctx.reply(messages.invalidTime);
+    return ctx.reply(repliesMessages.invalidTime);
   }
 
   const [hours, minutes] = parseTime(time);
@@ -30,7 +33,7 @@ const setNotification = async (ctx) => {
       }
 
       if (!task.data) {
-        return ctx.reply(messages.getOneTaskError);
+        return ctx.reply(errorsMessages.getOneTaskError);
       }
 
       return ctx.reply(
@@ -40,20 +43,20 @@ const setNotification = async (ctx) => {
     },
   );
 
-  ctx.reply(messages.notificationCreatedSuccessfully(hours, minutes));
+  ctx.reply(repliesMessages.notificationCreatedSuccessfully(hours, minutes));
 };
 
 const tasksNotificationScene = new Scenes.WizardScene(
   TASK_NOTIFICATION_SCENE,
   async (ctx) => {
-    await ctx.editMessageText(messages.taskNotificationSceneTitle, {
+    await ctx.editMessageText(textMessages.taskNotificationSceneTitle, {
       reply_markup: {
         inline_keyboard: [
-          [Markup.button.callback(messages.backButton, `back`)],
+          [Markup.button.callback(buttonsMessages.backButton, `back`)],
         ],
       },
     });
-    await ctx.reply(messages.askTime);
+    await ctx.reply(repliesMessages.askTime);
     return ctx.wizard.next();
   },
   setNotification,

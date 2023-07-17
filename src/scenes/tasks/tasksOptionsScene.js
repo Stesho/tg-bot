@@ -7,24 +7,29 @@ import {
   TASK_UPDATING_SCENE,
 } from '../../constants/scenes/tasksScenesConst.js';
 import deleteTask from '../../db/task/deleteTask.js';
-import messages from '../../constants/messages/messages.js';
+import textMessages from '../../constants/messages/textMessages.js';
+import buttonsMessages from '../../constants/messages/buttonsMessages.js';
+import repliesMessages from '../../constants/messages/repliesMessages.js';
 
 const tasksOptionsScene = new Scenes.BaseScene(TASK_OPTIONS_SCENE);
 tasksOptionsScene.enter(async (ctx) => {
-  await ctx.editMessageText(messages.taskOptionsSceneTitle, {
+  await ctx.editMessageText(textMessages.taskOptionsSceneTitle, {
     reply_markup: {
       inline_keyboard: [
         [
           Markup.button.callback(
-            messages.taskSetNotification,
+            buttonsMessages.taskSetNotification,
             TASK_NOTIFICATION_SCENE,
           ),
         ],
         [
-          Markup.button.callback(messages.taskEdit, TASK_UPDATING_SCENE),
-          Markup.button.callback(messages.taskDelete, TASK_DELETION_SCENE),
+          Markup.button.callback(buttonsMessages.taskEdit, TASK_UPDATING_SCENE),
+          Markup.button.callback(
+            buttonsMessages.taskDelete,
+            TASK_DELETION_SCENE,
+          ),
         ],
-        [Markup.button.callback(messages.backButton, `back`)],
+        [Markup.button.callback(buttonsMessages.backButton, `back`)],
       ],
     },
   });
@@ -45,7 +50,7 @@ tasksOptionsScene.action(TASK_DELETION_SCENE, async (ctx) => {
   if (deletedTask.isError) {
     await ctx.reply(deletedTask.data);
   } else {
-    await ctx.reply(messages.taskDeletedSuccessfully);
+    await ctx.reply(repliesMessages.taskDeletedSuccessfully);
   }
 
   return ctx.scene.enter(TASK_GETTING_SCENE, ctx.scene.state);

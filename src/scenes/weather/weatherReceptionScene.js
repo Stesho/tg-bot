@@ -1,11 +1,11 @@
 import { Scenes } from 'telegraf';
 import { GET_WEATHER_SCENE } from '../../constants/scenes/weatherScenesConst.js';
 import { getWeatherInCity } from '../../api/weather/getWeatherInCity.js';
-import messages from '../../constants/messages/messages.js';
 import getWeatherReplyText from '../../utils/getWeatherReplyText.js';
+import repliesMessages from '../../constants/messages/repliesMessages.js';
 
 const askCity = (ctx) => {
-  ctx.reply(messages.askCity);
+  ctx.reply(repliesMessages.askCity);
   ctx.wizard.next();
 };
 

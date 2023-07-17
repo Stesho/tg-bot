@@ -1,5 +1,5 @@
 import TaskSchema from '../schemas/taskSchema.js';
-import messages from '../../constants/messages/messages.js';
+import errorsMessages from '../../constants/messages/errorsMessages.js';
 
 const deleteTask = async (taskId) => {
   try {
@@ -13,7 +13,7 @@ const deleteTask = async (taskId) => {
   } catch (error) {
     return {
       isError: true,
-      data: messages.deleteTaskError,
+      data: errorsMessages.deleteTaskError,
     };
   }
 };

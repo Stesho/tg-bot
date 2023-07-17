@@ -6,7 +6,8 @@ import {
 import { IMAGE_API_TOKEN } from '../../constants/environment.js/environment.js';
 import getRandomIntegerInRange from '../../utils/getRandomIntegerInRange.js';
 import createQueryParams from '../../utils/createQueryParams.js';
-import messages from '../../constants/messages/messages.js';
+import errorsMessages from '../../constants/messages/errorsMessages.js';
+import handleError from '../../utils/handleError.js';
 
 const getRandomImage = async (query) => {
   try {
@@ -31,10 +32,7 @@ const getRandomImage = async (query) => {
       data: response.data,
     };
   } catch (error) {
-    return {
-      isError: true,
-      data: messages.getImageError,
-    };
+    return handleError(error, () => errorsMessages.getImageError);
   }
 };
 

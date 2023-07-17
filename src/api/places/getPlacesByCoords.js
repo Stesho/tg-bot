@@ -4,9 +4,9 @@ import {
   GET_PLACES_API_URL,
 } from '../../constants/api/placesApiConst.js';
 import { PLACES_API_TOKEN } from '../../constants/environment.js/environment.js';
-import getCityInfo from './getCityInfo.js';
 import createQueryParams from '../../utils/createQueryParams.js';
-import messages from '../../constants/messages/messages.js';
+import errorsMessages from '../../constants/messages/errorsMessages.js';
+import handleError from '../../utils/handleError.js';
 
 const getPlacesByCoords = async (lon, lat) => {
   try {
@@ -29,10 +29,7 @@ const getPlacesByCoords = async (lon, lat) => {
       data: places.data,
     };
   } catch (error) {
-    return {
-      isError: true,
-      data: messages.getPlacesError,
-    };
+    return handleError(error, () => errorsMessages.getPlacesError);
   }
 };
 

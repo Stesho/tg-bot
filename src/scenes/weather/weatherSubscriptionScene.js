@@ -6,16 +6,16 @@ import {
 import schedule from 'node-schedule';
 import { getWeatherInCity } from '../../api/weather/getWeatherInCity.js';
 import parseTime from '../../utils/parseTime.js';
-import messages from '../../constants/messages/messages.js';
 import getWeatherReplyText from '../../utils/getWeatherReplyText.js';
 import isValidateTime from '../../utils/validateTime.js';
+import repliesMessages from '../../constants/messages/repliesMessages.js';
 
 const askCity = (ctx) => {
   ctx.wizard.state.weather = {
     city: '',
     time: '',
   };
-  ctx.reply(messages.askCity);
+  ctx.reply(repliesMessages.askCity);
   ctx.wizard.next();
 };
 
@@ -27,7 +27,7 @@ const askTime = async (ctx) => {
   }
 
   ctx.wizard.state.weather.city = ctx.message.text;
-  ctx.reply(messages.askTime);
+  ctx.reply(repliesMessages.askTime);
 
   ctx.wizard.next();
 };
@@ -37,7 +37,7 @@ const subscribe = async (ctx) => {
   const time = ctx.message.text;
 
   if (!isValidateTime(time)) {
-    return ctx.reply(messages.invalidTime);
+    return ctx.reply(repliesMessages.invalidTime);
   }
 
   const [hours, minutes] = parseTime(time);
@@ -51,7 +51,7 @@ const subscribe = async (ctx) => {
     },
   );
 
-  ctx.reply(messages.userSubscribedSuccessfully);
+  ctx.reply(repliesMessages.userSubscribedSuccessfully);
   return ctx.scene.leave();
 };
 

@@ -1,5 +1,5 @@
 import TaskSchema from '../schemas/taskSchema.js';
-import messages from '../../constants/messages/messages.js';
+import errorsMessages from '../../constants/messages/errorsMessages.js';
 
 const updateTask = async (taskId, updatedTaskFields) => {
   try {
@@ -18,7 +18,7 @@ const updateTask = async (taskId, updatedTaskFields) => {
   } catch (error) {
     return {
       isError: true,
-      data: messages.updateTaskError,
+      data: errorsMessages.updateTaskError,
     };
   }
 };

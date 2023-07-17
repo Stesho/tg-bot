@@ -1,10 +1,11 @@
-import { Composer, Markup, Scenes } from 'telegraf';
+import { Markup, Scenes } from 'telegraf';
 import {
   TASK_ADD_SCENE,
   TASK_GETTING_SCENE,
   TASKS_SCENE,
 } from '../../constants/scenes/tasksScenesConst.js';
-import messages from '../../constants/messages/messages.js';
+import textMessages from '../../constants/messages/textMessages.js';
+import buttonsMessages from '../../constants/messages/buttonsMessages.js';
 
 const tasksScene = new Scenes.BaseScene(TASKS_SCENE);
 
@@ -12,10 +13,10 @@ tasksScene.enter((ctx) => {
   ctx.scene.state.userId = ctx.update.message.from.id;
 
   ctx.reply(
-    messages.taskSceneTitle,
+    textMessages.taskSceneTitle,
     Markup.inlineKeyboard([
-      [Markup.button.callback(messages.taskShow, TASK_GETTING_SCENE)],
-      [Markup.button.callback(messages.taskAdd, TASK_ADD_SCENE)],
+      [Markup.button.callback(buttonsMessages.taskShow, TASK_GETTING_SCENE)],
+      [Markup.button.callback(buttonsMessages.taskAdd, TASK_ADD_SCENE)],
     ]).resize(),
   );
 });
