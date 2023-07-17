@@ -15,7 +15,10 @@ const recommendPlacesScene = new Scenes.WizardScene(
   async (ctx) => {
     const city = ctx.message.text;
     const cityInfo = await getCityInfo(city);
-    const places = await getPlacesByCoords(cityInfo.lon, cityInfo.lat);
+    const places = await getPlacesByCoords(
+      cityInfo.data.lon,
+      cityInfo.data.lat,
+    );
 
     if (places.isError) {
       return ctx.reply(places.data);
@@ -25,7 +28,7 @@ const recommendPlacesScene = new Scenes.WizardScene(
       return ctx.reply(errorsMessages.cityNotFoundError);
     }
 
-    const replyText = getPlacesReplyText(places);
+    const replyText = getPlacesReplyText(places.data);
     await ctx.replyWithHTML(replyText);
 
     return ctx.scene.leave();
