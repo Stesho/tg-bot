@@ -9,7 +9,6 @@ import messages from '../../constants/messages/messages.js';
 
 const tasksOptionsScene = new Scenes.BaseScene('selectTaskOptionMenu');
 tasksOptionsScene.enter(async (ctx) => {
-  const taskId = ctx.scene.state.taskId;
   await ctx.editMessageText(messages.taskOptionsSceneTitle, {
     reply_markup: {
       inline_keyboard: [
@@ -39,9 +38,13 @@ tasksOptionsScene.action('edit-task', async (ctx) => {
 
 tasksOptionsScene.action('delete-task', async (ctx) => {
   const taskId = ctx.scene.state.taskId;
+  const deletedTask = await deleteTask(taskId);
 
-  await deleteTask(taskId);
-  await ctx.reply(messages.taskDeletedSuccessfully);
+  if (deletedTask.isError) {
+    await ctx.reply(deletedTask.data);
+  } else {
+    await ctx.reply(messages.taskDeletedSuccessfully);
+  }
 
   return ctx.scene.enter(TASK_GETTING_SCENE, ctx.scene.state);
 });

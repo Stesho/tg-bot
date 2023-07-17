@@ -1,10 +1,18 @@
 import TaskSchema from '../schemas/taskSchema.js';
+import messages from '../../constants/messages/messages.js';
 
 const getOneTask = async (taskId) => {
   try {
-    return await TaskSchema.findById(taskId);
+    const task = await TaskSchema.findById(taskId);
+    return {
+      isError: false,
+      data: task,
+    };
   } catch (error) {
-    console.log(error);
+    return {
+      isError: true,
+      data: messages.getOneTaskError,
+    };
   }
 };
 

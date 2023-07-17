@@ -1,12 +1,20 @@
 import TaskSchema from '../schemas/taskSchema.js';
+import messages from '../../constants/messages/messages.js';
 
 const deleteTask = async (taskId) => {
   try {
-    return await TaskSchema.deleteOne({
+    const deletedTask = await TaskSchema.deleteOne({
       _id: taskId,
     });
+    return {
+      isError: false,
+      data: deletedTask,
+    };
   } catch (error) {
-    console.log(error);
+    return {
+      isError: true,
+      data: messages.deleteTaskError,
+    };
   }
 };
 

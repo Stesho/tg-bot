@@ -8,7 +8,13 @@ const tasksGettingScene = new Scenes.BaseScene(TASK_GETTING_SCENE);
 tasksGettingScene.enter(async (ctx) => {
   const userId = ctx.scene.state.userId;
   const tasks = await getAllTasks(userId);
-  const tasksButtons = tasks.map((task, index) => [
+
+  if (tasks.isError) {
+    await ctx.reply(tasks.data);
+    return ctx.scene.leave();
+  }
+
+  const tasksButtons = tasks.data.map((task, index) => [
     Markup.button.callback(
       `${index + 1}. ${task.title}`,
       `choose-task_${task.id}`,

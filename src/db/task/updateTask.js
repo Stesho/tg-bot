@@ -1,8 +1,9 @@
 import TaskSchema from '../schemas/taskSchema.js';
+import messages from '../../constants/messages/messages.js';
 
 const updateTask = async (taskId, updatedTaskFields) => {
   try {
-    return await TaskSchema.updateOne(
+    const updatedTask = await TaskSchema.updateOne(
       {
         _id: taskId,
       },
@@ -10,8 +11,15 @@ const updateTask = async (taskId, updatedTaskFields) => {
         $set: updatedTaskFields,
       },
     );
+    return {
+      isError: false,
+      data: updatedTask,
+    };
   } catch (error) {
-    console.log(error);
+    return {
+      isError: true,
+      data: messages.updateTaskError,
+    };
   }
 };
 

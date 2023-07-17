@@ -1,6 +1,6 @@
 import { Markup, Scenes } from 'telegraf';
 import { TASK_UPDATING_SCENE } from '../../constants/scenes/tasksScenesConst.js';
-import editTask from '../../db/task/updateTask.js';
+import updateTask from '../../db/task/updateTask.js';
 import messages from '../../constants/messages/messages.js';
 
 const tasksUpdatingScene = new Scenes.BaseScene(TASK_UPDATING_SCENE);
@@ -33,24 +33,23 @@ tasksUpdatingScene.hears(/./, async (ctx) => {
   const { taskId, fieldForUpdating } = ctx.scene.state;
 
   if (!fieldForUpdating) {
-    ctx.reply(messages.askFieldForUpdate);
-    return;
+    return ctx.reply(messages.askFieldForUpdate);
   }
 
   if (!ctx.update?.message?.text?.length) {
-    ctx.reply(messages.emptyMessage);
-    return;
+    return ctx.reply(messages.emptyMessage);
   }
 
-  try {
-    await editTask(taskId, {
-      [fieldForUpdating]: ctx.message.text,
-    });
-    ctx.reply(messages.taskUpdatedSuccessfully);
-    ctx.scene.state.fieldForUpdating = null;
-  } catch (error) {
-    ctx.reply(messages.serverError);
+  const updatedTask = await updateTask(taskId, {
+    [fieldForUpdating]: ctx.message.text,
+  });
+
+  if (updatedTask.isError) {
+    return ctx.reply(updatedTask.data);
   }
+
+  ctx.reply(messages.taskUpdatedSuccessfully);
+  ctx.scene.state.fieldForUpdating = null;
 });
 
 export default tasksUpdatingScene;

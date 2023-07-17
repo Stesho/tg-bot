@@ -4,9 +4,15 @@ import { Markup, Scenes } from 'telegraf';
 import { TASK_NOTIFICATION_SCENE } from '../../constants/scenes/tasksScenesConst.js';
 import getOneTask from '../../db/task/getOneTask.js';
 import messages from '../../constants/messages/messages.js';
+import validateTime from '../../utils/validateTime.js';
 
 const setNotification = async (ctx) => {
   const time = ctx.message.text;
+
+  if (!validateTime(time)) {
+    return ctx.reply(messages.invalidTime);
+  }
+
   const [hours, minutes] = parseTime(time);
   const { taskId, userId } = ctx.scene.state;
 
@@ -15,9 +21,18 @@ const setNotification = async (ctx) => {
     `${minutes} ${hours} * * *`,
     async () => {
       const task = await getOneTask(taskId);
-      ctx.reply(
-        `${task.title}
-         ${task.content}`,
+
+      if (task.isError) {
+        return ctx.reply(task.data);
+      }
+
+      if (!task.data) {
+        return ctx.reply(messages.getOneTaskError);
+      }
+
+      return ctx.reply(
+        `${task.data.title}
+         ${task.data.content}`,
       );
     },
   );

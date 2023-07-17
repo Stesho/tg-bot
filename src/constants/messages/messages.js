@@ -58,6 +58,13 @@ Click on one of them to change the task, delete it, or set a notification.`,
   requestError: '❗ Request error. Try later',
   unknownError: '❗ Unknown error. Try later',
   cityNotFoundError: '❗ City not found. Try again',
+  invalidTitle: '❗ Invalid title',
+  invalidContent: '❗ Invalid content',
+  addTaskError: '❗ Error in adding a task',
+  getAllTasksError: '❗ Error in getting all tasks',
+  getOneTaskError: '❗ Error in finding task',
+  deleteTaskError: '❗ Error in deleting task',
+  updateTaskError: '❗ Error in updating task',
 };
 
 export default messages;
