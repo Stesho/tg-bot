@@ -12,8 +12,8 @@ import repliesMessages from '../../constants/messages/repliesMessages.js';
 
 const weatherScene = new Scenes.BaseScene(WEATHER_SCENE);
 
-weatherScene.enter((ctx) => {
-  ctx.reply(
+weatherScene.enter(async (ctx) => {
+  await ctx.reply(
     textMessages.weatherSceneTitle,
     Markup.inlineKeyboard([
       [

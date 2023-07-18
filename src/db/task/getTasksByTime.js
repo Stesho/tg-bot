@@ -1,10 +1,10 @@
 import TaskSchema from '../schemas/taskSchema.js';
 import errorsMessages from '../../constants/messages/errorsMessages.js';
 
-const getAllTasks = async (userId) => {
+const getTasksByTime = async (time) => {
   try {
     const tasks = await TaskSchema.find({
-      userId,
+      notificationTime: time,
     });
     return {
       isError: false,
@@ -18,4 +18,4 @@ const getAllTasks = async (userId) => {
   }
 };
 
-export default getAllTasks;
+export default getTasksByTime;

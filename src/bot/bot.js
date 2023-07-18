@@ -22,6 +22,7 @@ import cancelScene from '../middlewares/cancelScene.js';
 import setBotCommandHandlers from '../utils/setBotCommands.js';
 import unknownCommand from '../middlewares/unknownCommand.js';
 import commandsToArray from '../utils/commandsToArray.js';
+import setTasksNotification from '../utils/setTasksNotification.js';
 
 const startBot = () => {
   const bot = new Telegraf(BOT_TOKEN);
@@ -48,11 +49,9 @@ const startBot = () => {
 
   bot.use(session());
   bot.use(stage.middleware());
-  // bot.catch((err, ctx) => {
-  //   console.log(`Ooops, encountered an error for ${ctx.updateType}`, err)
-  // })
 
   setBotCommandHandlers(bot, commands);
+  setTasksNotification(bot);
 
   bot.telegram.setMyCommands(commandsToArray(commands));
 

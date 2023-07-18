@@ -7,7 +7,7 @@ import schedule from 'node-schedule';
 import { getWeatherInCity } from '../../api/weather/getWeatherInCity.js';
 import parseTime from '../../utils/parseTime.js';
 import getWeatherReplyText from '../../utils/getWeatherReplyText.js';
-import isValidateTime from '../../utils/validateTime.js';
+import isValidTime from '../../utils/isValidTime.js';
 import repliesMessages from '../../constants/messages/repliesMessages.js';
 
 const askCity = (ctx) => {
@@ -44,7 +44,7 @@ const subscribe = async (ctx) => {
   const city = ctx.wizard.state.weather.city;
   const time = ctx.message.text;
 
-  if (!isValidateTime(time)) {
+  if (!isValidTime(time)) {
     return ctx.reply(repliesMessages.invalidTime);
   }
 

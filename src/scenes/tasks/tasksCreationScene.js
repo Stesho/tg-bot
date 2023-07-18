@@ -7,7 +7,8 @@ const askTitle = async (ctx) => {
   ctx.scene.state.task = {
     title: '',
     content: '',
-    user_id: ctx.scene.state.userId,
+    userId: ctx.scene.state.userId,
+    chatId: '',
   };
 
   ctx.reply(repliesMessages.askTitle);
@@ -20,6 +21,7 @@ const askContent = async (ctx) => {
     return ctx.reply(repliesMessages.invalidTitle);
   }
 
+  ctx.scene.state.task.chatId = ctx.update.message.chat.id;
   ctx.scene.state.task.title = ctx.message.text;
   ctx.reply(repliesMessages.askContent);
 

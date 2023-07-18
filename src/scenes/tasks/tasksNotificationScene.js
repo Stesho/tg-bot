@@ -1,16 +1,13 @@
 import parseTime from '../../utils/parseTime.js';
-import schedule from 'node-schedule';
 import { Markup, Scenes } from 'telegraf';
 import {
   TASK_NOTIFICATION_SCENE,
   TASK_OPTIONS_SCENE,
 } from '../../constants/scenes/tasksScenesConst.js';
-import getOneTask from '../../db/task/getOneTask.js';
-import textMessages from '../../constants/messages/textMessages.js';
-import isValidateTime from '../../utils/validateTime.js';
+import isValidTime from '../../utils/isValidTime.js';
 import buttonsMessages from '../../constants/messages/buttonsMessages.js';
-import errorsMessages from '../../constants/messages/errorsMessages.js';
 import repliesMessages from '../../constants/messages/repliesMessages.js';
+import updateTask from '../../db/task/updateTask.js';
 
 const askTime = async (ctx) => {
   await ctx.editMessageReplyMarkup({
@@ -31,33 +28,20 @@ const setNotification = async (ctx) => {
 
   const time = ctx.message.text;
 
-  if (!isValidateTime(time)) {
+  if (!isValidTime(time)) {
     return ctx.reply(repliesMessages.invalidTime);
   }
 
   const [hours, minutes] = parseTime(time);
-  const { taskId, userId } = ctx.scene.state;
+  const { taskId } = ctx.scene.state;
 
-  schedule.scheduleJob(
-    `task-notification_${userId}_${taskId}`,
-    `${minutes} ${hours} * * *`,
-    async () => {
-      const task = await getOneTask(taskId);
+  const updatedTask = await updateTask(taskId, {
+    notificationTime: time,
+  });
 
-      if (task.isError) {
-        return ctx.reply(task.data);
-      }
-
-      if (!task.data) {
-        return ctx.reply(errorsMessages.getOneTaskError);
-      }
-
-      return ctx.reply(
-        `${task.data.title}
-         ${task.data.content}`,
-      );
-    },
-  );
+  if (updatedTask.isError) {
+    return ctx.reply(updateTask.data);
+  }
 
   ctx.reply(repliesMessages.notificationCreatedSuccessfully(hours, minutes));
 };
