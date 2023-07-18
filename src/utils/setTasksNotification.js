@@ -2,12 +2,10 @@ import schedule from 'node-schedule';
 import getTasksByTime from '../db/task/getTasksByTime.js';
 import updateManyTasks from '../db/task/updateManyTasks.js';
 import textMessages from '../constants/messages/textMessages.js';
+import getCurrentTime from './getCurrentTime.js';
 
 const handleScheduler = async (bot) => {
-  const currentDate = new Date();
-  const hours = currentDate.getHours().toString().padStart(2, '0');
-  const minutes = currentDate.getMinutes().toString().padStart(2, '0');
-  const time = `${hours}:${minutes}`;
+  const time = getCurrentTime();
   const tasks = await getTasksByTime(time);
 
   tasks.data.forEach((task) => {

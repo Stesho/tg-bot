@@ -23,6 +23,7 @@ import setBotCommandHandlers from '../utils/setBotCommands.js';
 import unknownCommand from '../middlewares/unknownCommand.js';
 import commandsToArray from '../utils/commandsToArray.js';
 import setTasksNotification from '../utils/setTasksNotification.js';
+import setWeatherNotification from '../utils/setWeatherNotification.js';
 
 const startBot = () => {
   const bot = new Telegraf(BOT_TOKEN);
@@ -52,6 +53,7 @@ const startBot = () => {
 
   setBotCommandHandlers(bot, commands);
   setTasksNotification(bot);
+  setWeatherNotification(bot);
 
   bot.telegram.setMyCommands(commandsToArray(commands));
 

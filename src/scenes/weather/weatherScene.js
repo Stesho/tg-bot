@@ -9,10 +9,13 @@ import schedule from 'node-schedule';
 import textMessages from '../../constants/messages/textMessages.js';
 import buttonsMessages from '../../constants/messages/buttonsMessages.js';
 import repliesMessages from '../../constants/messages/repliesMessages.js';
+import deleteNotificationById from '../../db/notification/deleteNotificationByChatId.js';
 
 const weatherScene = new Scenes.BaseScene(WEATHER_SCENE);
 
 weatherScene.enter(async (ctx) => {
+  ctx.scene.state.chatId = ctx.update.message.from.id;
+
   await ctx.reply(
     textMessages.weatherSceneTitle,
     Markup.inlineKeyboard([
@@ -46,9 +49,16 @@ weatherScene.action(SUBSCRIBE_WEATHER_SCENE, (ctx) => {
   return ctx.scene.enter(SUBSCRIBE_WEATHER_SCENE);
 });
 
-weatherScene.action(UNSUBSCRIBE_WEATHER_SCENE, (ctx) => {
-  schedule.cancelJob(UNSUBSCRIBE_WEATHER_SCENE);
+weatherScene.action(UNSUBSCRIBE_WEATHER_SCENE, async (ctx) => {
+  const chatId = ctx.scene.state.chatId;
+  const deletedNotification = await deleteNotificationById(chatId);
+
+  if (deletedNotification.isError) {
+    ctx.reply(deletedNotification.data);
+  }
+
   ctx.reply(repliesMessages.userUnsubscribedSuccessfully);
+
   return ctx.scene.leave();
 });
 

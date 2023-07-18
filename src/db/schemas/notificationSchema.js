@@ -1,13 +1,11 @@
 import mongoose, { Schema } from 'mongoose';
 
-const SubscriptionSchema = new Schema({
-  chat_id: String,
+const NotificationSchema = new Schema({
+  chatId: String,
   city: String,
   notificationTime: String,
 });
 
-const SubscriptionSchemaModel = mongoose.model(
-  'Subscription',
-  SubscriptionSchema,
-);
-export default SubscriptionSchemaModel;
+const NotificationModel = mongoose.model('Notification', NotificationSchema);
+
+export default NotificationModel;

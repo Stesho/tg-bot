@@ -9,6 +9,10 @@ const errorsMessages = {
   updateTaskError: '❗ Error in updating task',
   getEventsError: '❗ Error in finding events',
   getPlacesError: '❗ Error in finding places',
+  addNotificationError: '❗ Error in adding notification',
+  getOneNotificationError: '❗ Error in finding notifications',
+  getAllNotificationError: '❗ Error in getting notifications',
+  deleteNotificationError: '❗ Error in deleting notification',
   getImageError: '❗ Error in getting image. Try again later',
   serverError: '❗ Server error. Try again later',
 };

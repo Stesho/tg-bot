@@ -1,8 +1,8 @@
 import { Scenes } from 'telegraf';
 import { GET_WEATHER_SCENE } from '../../constants/scenes/weatherScenesConst.js';
 import { getWeatherInCity } from '../../api/weather/getWeatherInCity.js';
-import getWeatherReplyText from '../../utils/getWeatherReplyText.js';
 import repliesMessages from '../../constants/messages/repliesMessages.js';
+import textMessages from '../../constants/messages/textMessages.js';
 
 const askCity = (ctx) => {
   ctx.reply(repliesMessages.askCity);
@@ -20,7 +20,7 @@ const getWeather = async (ctx) => {
     return ctx.reply(weatherInfo.data);
   }
 
-  const weatherReplyText = getWeatherReplyText(weatherInfo.data);
+  const weatherReplyText = textMessages.weatherOverview(weatherInfo.data);
   ctx.replyWithHTML(weatherReplyText);
 
   return ctx.scene.leave();
