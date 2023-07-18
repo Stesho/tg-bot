@@ -37,4 +37,6 @@ const tasks = (ctx) => ctx.scene.enter(TASKS_SCENE);
 
 const recommend = (ctx) => ctx.scene.enter(RECOMMEND_SCENE);
 
-export { start, help, weather, cat, dog, tasks, recommend };
+const cancel = (ctx) => ctx.scene.leave();
+
+export { start, help, weather, cat, dog, tasks, recommend, cancel };

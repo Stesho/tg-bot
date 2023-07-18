@@ -6,6 +6,7 @@ import {
   start,
   tasks,
   weather,
+  cancel,
 } from '../../commands/commands.js';
 
 const commands = {
@@ -36,6 +37,10 @@ const commands = {
   recommend: {
     description: 'Recommend places, events, attractions',
     handler: recommend,
+  },
+  cancel: {
+    description: 'Cancel the current operation',
+    handler: cancel,
   },
 };
 
