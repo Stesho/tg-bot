@@ -1,0 +1,10 @@
+export const TASKS_SCENE = 'tasks';
+export const TASK_GETTING_SCENE = 'get-tasks';
+export const TASK_ADD_SCENE = 'add-task';
+export const TASK_UPDATING_SCENE = 'update-task';
+export const TASK_TITLE_UPDATING_SCENE = 'update-task-title';
+export const TASK_CONTENT_UPDATING_SCENE = 'update-task-content';
+export const TASK_NOTIFICATION_SCENE = 'set-task-notification';
+export const TASK_DELETION_SCENE = 'delete-task';
+export const TASK_OPTIONS_SCENE = 'task-options';
+export const TASK_SELECT_SCENE = 'select-task';
