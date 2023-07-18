@@ -3,4 +3,4 @@ const parseTime = (time) => {
   return [hours, minutes];
 };
 
-export default parseTime;
+export { parseTime };

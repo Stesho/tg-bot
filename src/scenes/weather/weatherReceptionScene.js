@@ -1,9 +1,10 @@
 import { Scenes } from 'telegraf';
-import { GET_WEATHER_SCENE } from '../../constants/scenes/weatherScenesConst.js';
+import { GET_WEATHER_SCENE } from '../../constants/scenes/index.js';
 import { getWeatherInCity } from '../../api/weather/getWeatherInCity.js';
-import repliesMessages from '../../constants/messages/repliesMessages.js';
-import textMessages from '../../constants/messages/textMessages.js';
-
+import {
+  repliesMessages,
+  textMessages,
+} from '../../constants/messages/index.js';
 const askCity = (ctx) => {
   ctx.reply(repliesMessages.askCity);
   ctx.wizard.next();
@@ -32,4 +33,4 @@ const weatherReceptionScene = new Scenes.WizardScene(
   getWeather,
 );
 
-export default weatherReceptionScene;
+export { weatherReceptionScene };

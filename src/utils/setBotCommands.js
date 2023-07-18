@@ -4,4 +4,4 @@ const setBotCommandHandlers = (bot, commands) => {
   }
 };
 
-export default setBotCommandHandlers;
+export { setBotCommandHandlers };

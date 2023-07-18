@@ -1,7 +1,7 @@
 import { Scenes } from 'telegraf';
-import { TASK_ADD_SCENE } from '../../constants/scenes/tasksScenesConst.js';
-import addTask from '../../db/task/addTask.js';
-import repliesMessages from '../../constants/messages/repliesMessages.js';
+import { TASK_ADD_SCENE } from '../../constants/scenes/index.js';
+import { addTask } from '../../db/task/index.js';
+import { repliesMessages } from '../../constants/messages/index.js';
 
 const askTitle = async (ctx) => {
   ctx.scene.state.task = {
@@ -53,4 +53,4 @@ const tasksCreationScene = new Scenes.WizardScene(
   createTask,
 );
 
-export default tasksCreationScene;
+export { tasksCreationScene };

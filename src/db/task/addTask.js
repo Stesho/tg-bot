@@ -1,8 +1,9 @@
-import TaskSchema from '../schemas/taskSchema.js';
-import errorsMessages from '../../constants/messages/errorsMessages.js';
+import { TaskModel } from '../schemas/index.js';
+import { errorsMessages } from '../../constants/messages/index.js';
+
 const addTask = async (task) => {
   try {
-    const addedTask = await TaskSchema.create(task);
+    const addedTask = await TaskModel.create(task);
     return {
       isError: false,
       data: addedTask,
@@ -15,4 +16,4 @@ const addTask = async (task) => {
   }
 };
 
-export default addTask;
+export { addTask };

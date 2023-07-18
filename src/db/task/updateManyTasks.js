@@ -1,9 +1,9 @@
-import TaskSchema from '../schemas/taskSchema.js';
-import errorsMessages from '../../constants/messages/errorsMessages.js';
+import { TaskModel } from '../schemas/index.js';
+import { errorsMessages } from '../../constants/messages/index.js';
 
-const updateTask = async (filter, updatedTaskFields) => {
+const updateManyTasks = async (filter, updatedTaskFields) => {
   try {
-    const updatedTask = await TaskSchema.updateMany(filter, {
+    const updatedTask = await TaskModel.updateMany(filter, {
       $set: updatedTaskFields,
     });
     return {
@@ -18,4 +18,4 @@ const updateTask = async (filter, updatedTaskFields) => {
   }
 };
 
-export default updateTask;
+export { updateManyTasks };

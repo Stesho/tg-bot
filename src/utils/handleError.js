@@ -1,4 +1,4 @@
-import textMessages from '../constants/messages/textMessages.js';
+import { textMessages } from '../constants/messages/index.js';
 
 const handleError = (error, errorHandler) => {
   if (error.response) {
@@ -19,4 +19,4 @@ const handleError = (error, errorHandler) => {
   };
 };
 
-export default handleError;
+export { handleError };

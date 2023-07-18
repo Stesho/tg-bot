@@ -2,11 +2,10 @@ import axios from 'axios';
 import {
   BASE_PLACES_API_URL,
   GET_PLACES_API_URL,
-} from '../../constants/api/placesApiConst.js';
+} from '../../constants/api/index.js';
 import { PLACES_API_TOKEN } from '../../constants/environment.js/environment.js';
-import createQueryParams from '../../utils/createQueryParams.js';
-import errorsMessages from '../../constants/messages/errorsMessages.js';
-import handleError from '../../utils/handleError.js';
+import { errorsMessages } from '../../constants/messages/index.js';
+import { createQueryParams, handleError } from '../../utils/index.js';
 
 const getPlacesByCoords = async (lon, lat) => {
   try {
@@ -33,4 +32,4 @@ const getPlacesByCoords = async (lon, lat) => {
   }
 };
 
-export default getPlacesByCoords;
+export { getPlacesByCoords };

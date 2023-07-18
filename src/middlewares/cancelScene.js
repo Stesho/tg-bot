@@ -1,5 +1,5 @@
 import commands from '../constants/commands/commands.js';
-import isCommand from '../utils/isCommand.js';
+import { isCommand } from '../utils/index.js';
 
 const cancelScene = async (ctx, next) => {
   const message = ctx.message?.text;
@@ -19,4 +19,4 @@ const cancelScene = async (ctx, next) => {
   return next();
 };
 
-export default cancelScene;
+export { cancelScene };

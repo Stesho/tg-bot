@@ -3,4 +3,4 @@ const getRandomIntegerInRange = (min, max) => {
   return Math.floor(rand);
 };
 
-export default getRandomIntegerInRange;
+export { getRandomIntegerInRange };

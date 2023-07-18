@@ -5,12 +5,14 @@ import {
   TASK_NOTIFICATION_SCENE,
   TASK_OPTIONS_SCENE,
   TASK_UPDATING_SCENE,
-} from '../../constants/scenes/tasksScenesConst.js';
-import deleteTask from '../../db/task/deleteTask.js';
-import textMessages from '../../constants/messages/textMessages.js';
-import buttonsMessages from '../../constants/messages/buttonsMessages.js';
-import repliesMessages from '../../constants/messages/repliesMessages.js';
-import getOneTask from '../../db/task/getOneTask.js';
+} from '../../constants/scenes/index.js';
+import { deleteTask } from '../../db/task/index.js';
+import {
+  textMessages,
+  repliesMessages,
+  buttonsMessages,
+} from '../../constants/messages/index.js';
+import { getOneTask } from '../../db/task/index.js';
 
 const tasksOptionsScene = new Scenes.BaseScene(TASK_OPTIONS_SCENE);
 tasksOptionsScene.enter(async (ctx) => {
@@ -70,4 +72,4 @@ tasksOptionsScene.action('back', async (ctx) => {
   return ctx.scene.enter(TASK_GETTING_SCENE, ctx.scene.state);
 });
 
-export default tasksOptionsScene;
+export { tasksOptionsScene };

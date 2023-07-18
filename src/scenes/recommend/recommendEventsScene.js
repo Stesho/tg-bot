@@ -1,10 +1,11 @@
 import { Scenes } from 'telegraf';
-import { RECOMMEND_EVENTS_SCENE } from '../../constants/scenes/recommendScenesConst.js';
-import getEventsByCountry from '../../api/events/getEventsByCountry.js';
-import getEventsReplyText from '../../utils/getEventsReplyText.js';
-import getCityInfo from '../../api/places/getCityInfo.js';
-import errorsMessages from '../../constants/messages/errorsMessages.js';
-import repliesMessages from '../../constants/messages/repliesMessages.js';
+import { RECOMMEND_EVENTS_SCENE } from '../../constants/scenes/index.js';
+import { getEventsByCountry, getCityInfo } from '../../api/index.js';
+import { getEventsReplyText } from '../../utils/index.js';
+import {
+  errorsMessages,
+  repliesMessages,
+} from '../../constants/messages/index.js';
 
 const askCity = async (ctx) => {
   await ctx.reply(repliesMessages.askCity);
@@ -45,4 +46,4 @@ const recommendEventsScene = new Scenes.WizardScene(
   recommendEvents,
 );
 
-export default recommendEventsScene;
+export { recommendEventsScene };

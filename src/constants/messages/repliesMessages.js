@@ -19,4 +19,4 @@ const repliesMessages = {
   invalidMessage: '❗ Invalid message. Try again',
 };
 
-export default repliesMessages;
+export { repliesMessages };

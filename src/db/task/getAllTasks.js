@@ -1,9 +1,9 @@
-import TaskSchema from '../schemas/taskSchema.js';
-import errorsMessages from '../../constants/messages/errorsMessages.js';
+import { TaskModel } from '../schemas/index.js';
+import { errorsMessages } from '../../constants/messages/index.js';
 
 const getAllTasks = async (userId) => {
   try {
-    const tasks = await TaskSchema.find({
+    const tasks = await TaskModel.find({
       userId,
     });
     return {
@@ -18,4 +18,4 @@ const getAllTasks = async (userId) => {
   }
 };
 
-export default getAllTasks;
+export { getAllTasks };

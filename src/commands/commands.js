@@ -1,9 +1,10 @@
-import { WEATHER_SCENE } from '../constants/scenes/weatherScenesConst.js';
-import { TASKS_SCENE } from '../constants/scenes/tasksScenesConst.js';
-import { RECOMMEND_SCENE } from '../constants/scenes/recommendScenesConst.js';
-import textMessages from '../constants/messages/textMessages.js';
-import repliesMessages from '../constants/messages/repliesMessages.js';
-import getRandomImage from '../api/images/getRandomImage.js';
+import {
+  TASKS_SCENE,
+  WEATHER_SCENE,
+  RECOMMEND_SCENE,
+} from '../constants/scenes/index.js';
+import { textMessages, repliesMessages } from '../constants/messages/index.js';
+import { getRandomImage } from '../api/index.js';
 
 const getRandomImageByQuery = async (ctx, query) => {
   const loadingMessage = await ctx.reply(repliesMessages.loading);

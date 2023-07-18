@@ -1,9 +1,9 @@
-import errorsMessages from '../../constants/messages/errorsMessages.js';
-import NotificationSchema from '../schemas/notificationSchema.js';
+import { errorsMessages } from '../../constants/messages/index.js';
+import { NotificationModel } from '../schemas/index.js';
 
 const updateNotification = async (chatId, updatedFields) => {
   try {
-    const updatedNotification = await NotificationSchema.updateOne(
+    const updatedNotification = await NotificationModel.updateOne(
       {
         chatId,
       },
@@ -23,4 +23,4 @@ const updateNotification = async (chatId, updatedFields) => {
   }
 };
 
-export default updateNotification;
+export { updateNotification };

@@ -1,8 +1,7 @@
 import schedule from 'node-schedule';
-import getTasksByTime from '../db/task/getTasksByTime.js';
-import updateManyTasks from '../db/task/updateManyTasks.js';
-import textMessages from '../constants/messages/textMessages.js';
-import getCurrentTime from './getCurrentTime.js';
+import { getTasksByTime, updateManyTasks } from '../db/task/index.js';
+import { textMessages } from '../constants/messages/index.js';
+import { getCurrentTime } from './getCurrentTime.js';
 
 const handleScheduler = async (bot) => {
   const time = getCurrentTime();
@@ -29,4 +28,4 @@ const setTasksNotification = (bot) => {
   schedule.scheduleJob(rule, () => handleScheduler(bot));
 };
 
-export default setTasksNotification;
+export { setTasksNotification };

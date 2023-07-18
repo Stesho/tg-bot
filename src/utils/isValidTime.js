@@ -3,4 +3,4 @@ const isValidTime = (time) => {
   return timeRegExp.test(time);
 };
 
-export default isValidTime;
+export { isValidTime };

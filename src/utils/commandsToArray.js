@@ -7,4 +7,4 @@ const commandsToArray = (commands) => {
   });
 };
 
-export default commandsToArray;
+export { commandsToArray };

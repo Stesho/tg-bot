@@ -1,11 +1,13 @@
 import { Scenes } from 'telegraf';
-import { SUBSCRIBE_WEATHER_SCENE } from '../../constants/scenes/weatherScenesConst.js';
+import { SUBSCRIBE_WEATHER_SCENE } from '../../constants/scenes/index.js';
 import { getWeatherInCity } from '../../api/weather/getWeatherInCity.js';
-import isValidTime from '../../utils/isValidTime.js';
-import repliesMessages from '../../constants/messages/repliesMessages.js';
-import addNotification from '../../db/notification/addNotification.js';
-import getNotificationByChatId from '../../db/notification/getNotificationByChatId.js';
-import updateNotification from '../../db/notification/updateNotification.js';
+import { isValidTime } from '../../utils/index.js';
+import { repliesMessages } from '../../constants/messages/index.js';
+import {
+  addNotification,
+  getNotificationByChatId,
+  updateNotification,
+} from '../../db/notification/index.js';
 
 const askCity = (ctx) => {
   ctx.wizard.state.weather = {
@@ -82,4 +84,4 @@ const weatherSubscriptionScene = new Scenes.WizardScene(
   subscribe,
 );
 
-export default weatherSubscriptionScene;
+export { weatherSubscriptionScene };

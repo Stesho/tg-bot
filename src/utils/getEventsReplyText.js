@@ -9,4 +9,4 @@ date: <em>${event.date}</em>
   );
 };
 
-export default getEventsReplyText;
+export { getEventsReplyText };

@@ -5,4 +5,4 @@ const getCurrentTime = () => {
   return `${hours}:${minutes}`;
 };
 
-export default getCurrentTime;
+export { getCurrentTime };

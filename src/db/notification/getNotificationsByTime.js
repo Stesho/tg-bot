@@ -1,9 +1,9 @@
-import errorsMessages from '../../constants/messages/errorsMessages.js';
-import NotificationSchema from '../schemas/notificationSchema.js';
+import { errorsMessages } from '../../constants/messages/index.js';
+import { NotificationModel } from '../schemas/index.js';
 
 const getNotificationsByTime = async (time) => {
   try {
-    const tasks = await NotificationSchema.find({
+    const tasks = await NotificationModel.find({
       notificationTime: time,
     });
     return {
@@ -18,4 +18,4 @@ const getNotificationsByTime = async (time) => {
   }
 };
 
-export default getNotificationsByTime;
+export { getNotificationsByTime };

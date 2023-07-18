@@ -17,4 +17,4 @@ const errorsMessages = {
   serverError: '❗ Server error. Try again later',
 };
 
-export default errorsMessages;
+export { errorsMessages };

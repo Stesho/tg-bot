@@ -4,4 +4,5 @@ const createQueryParams = (params) => {
     .slice(0, -1);
 };
 
-export default createQueryParams;
+// export default createQueryParams;
+export { createQueryParams };

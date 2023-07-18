@@ -1,9 +1,9 @@
-import errorsMessages from '../../constants/messages/errorsMessages.js';
-import NotificationSchema from '../schemas/notificationSchema.js';
+import { errorsMessages } from '../../constants/messages/index.js';
+import { NotificationModel } from '../schemas/index.js';
 
 const deleteNotificationByChatId = async (chatId) => {
   try {
-    const deletedNotification = await NotificationSchema.deleteOne({
+    const deletedNotification = await NotificationModel.deleteOne({
       chatId: chatId,
     });
     return {
@@ -18,4 +18,4 @@ const deleteNotificationByChatId = async (chatId) => {
   }
 };
 
-export default deleteNotificationByChatId;
+export { deleteNotificationByChatId };

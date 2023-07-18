@@ -3,9 +3,11 @@ import {
   TASK_ADD_SCENE,
   TASK_GETTING_SCENE,
   TASKS_SCENE,
-} from '../../constants/scenes/tasksScenesConst.js';
-import textMessages from '../../constants/messages/textMessages.js';
-import buttonsMessages from '../../constants/messages/buttonsMessages.js';
+} from '../../constants/scenes/index.js';
+import {
+  textMessages,
+  buttonsMessages,
+} from '../../constants/messages/index.js';
 
 const tasksScene = new Scenes.BaseScene(TASKS_SCENE);
 
@@ -29,4 +31,4 @@ tasksScene.action(TASK_ADD_SCENE, (ctx) => {
   return ctx.scene.enter(TASK_ADD_SCENE, ctx.scene.state);
 });
 
-export default tasksScene;
+export { tasksScene };

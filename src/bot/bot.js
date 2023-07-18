@@ -5,25 +5,32 @@ import {
   BOT_TOKEN,
   DB_CONNECTION_URI,
 } from '../constants/environment.js/environment.js';
-import weatherScene from '../scenes/weather/weatherScene.js';
-import weatherSubscriptionScene from '../scenes/weather/weatherSubscriptionScene.js';
-import weatherReceptionScene from '../scenes/weather/weatherReceptionScene.js';
-import tasksScene from '../scenes/tasks/tasksScene.js';
+import {
+  weatherScene,
+  weatherSubscriptionScene,
+  weatherReceptionScene,
+} from '../scenes/weather/index.js';
+import {
+  tasksScene,
+  tasksCreationScene,
+  tasksGettingScene,
+  tasksUpdatingScene,
+  tasksNotificationScene,
+  tasksOptionsScene,
+} from '../scenes/tasks/index.js';
 import connectDb from '../db/dbConnection/connectDb.js';
-import tasksCreationScene from '../scenes/tasks/tasksCreationScene.js';
-import tasksGettingScene from '../scenes/tasks/tasksGettingScene.js';
-import tasksUpdatingScene from '../scenes/tasks/tasksUpdatingScene.js';
-import tasksNotificationScene from '../scenes/tasks/tasksNotificationScene.js';
-import tasksOptionsScene from '../scenes/tasks/tasksOptionsScene.js';
-import recommendScene from '../scenes/recommend/recommendScene.js';
-import recommendEventsScene from '../scenes/recommend/recommendEventsScene.js';
-import recommendPlacesScene from '../scenes/recommend/recommendPlacesScene.js';
-import cancelScene from '../middlewares/cancelScene.js';
-import setBotCommandHandlers from '../utils/setBotCommands.js';
-import unknownCommand from '../middlewares/unknownCommand.js';
-import commandsToArray from '../utils/commandsToArray.js';
-import setTasksNotification from '../utils/setTasksNotification.js';
-import setWeatherNotification from '../utils/setWeatherNotification.js';
+import {
+  recommendScene,
+  recommendEventsScene,
+  recommendPlacesScene,
+} from '../scenes/recommend/index.js';
+import { cancelScene, unknownCommand } from '../middlewares/index.js';
+import {
+  setBotCommandHandlers,
+  commandsToArray,
+  setTasksNotification,
+  setWeatherNotification,
+} from '../utils/index.js';
 
 const startBot = () => {
   const bot = new Telegraf(BOT_TOKEN);

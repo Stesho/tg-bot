@@ -3,9 +3,11 @@ import {
   RECOMMEND_EVENTS_SCENE,
   RECOMMEND_PLACES_SCENE,
   RECOMMEND_SCENE,
-} from '../../constants/scenes/recommendScenesConst.js';
-import textMessages from '../../constants/messages/textMessages.js';
-import buttonsMessages from '../../constants/messages/buttonsMessages.js';
+} from '../../constants/scenes/index.js';
+import {
+  textMessages,
+  buttonsMessages,
+} from '../../constants/messages/index.js';
 
 const recommendScene = new Scenes.BaseScene(RECOMMEND_SCENE);
 
@@ -37,4 +39,4 @@ recommendScene.action(RECOMMEND_PLACES_SCENE, async (ctx) => {
   return ctx.scene.enter(RECOMMEND_PLACES_SCENE);
 });
 
-export default recommendScene;
+export { recommendScene };

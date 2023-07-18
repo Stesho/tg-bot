@@ -4,11 +4,12 @@ import {
   TASK_OPTIONS_SCENE,
   TASK_TITLE_UPDATING_SCENE,
   TASK_UPDATING_SCENE,
-} from '../../constants/scenes/tasksScenesConst.js';
-import updateTask from '../../db/task/updateTask.js';
-import buttonsMessages from '../../constants/messages/buttonsMessages.js';
-import repliesMessages from '../../constants/messages/repliesMessages.js';
-
+} from '../../constants/scenes/index.js';
+import { updateTask } from '../../db/task/index.js';
+import {
+  buttonsMessages,
+  repliesMessages,
+} from '../../constants/messages/index.js';
 const tasksUpdatingScene = new Scenes.BaseScene(TASK_UPDATING_SCENE);
 
 tasksUpdatingScene.enter(async (ctx) => {
@@ -64,4 +65,4 @@ tasksUpdatingScene.hears(/./, async (ctx) => {
   ctx.scene.state.fieldForUpdating = null;
 });
 
-export default tasksUpdatingScene;
+export { tasksUpdatingScene };

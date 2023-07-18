@@ -1,9 +1,9 @@
-import TaskSchema from '../schemas/taskSchema.js';
-import errorsMessages from '../../constants/messages/errorsMessages.js';
+import { errorsMessages } from '../../constants/messages/index.js';
+import { TaskModel } from '../schemas/index.js';
 
 const deleteTask = async (taskId) => {
   try {
-    const deletedTask = await TaskSchema.deleteOne({
+    const deletedTask = await TaskModel.deleteOne({
       _id: taskId,
     });
     return {
@@ -18,4 +18,4 @@ const deleteTask = async (taskId) => {
   }
 };
 
-export default deleteTask;
+export { deleteTask };

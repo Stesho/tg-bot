@@ -3,9 +3,9 @@ import {
   TASK_GETTING_SCENE,
   TASK_OPTIONS_SCENE,
   TASK_SELECT_SCENE,
-} from '../../constants/scenes/tasksScenesConst.js';
-import getAllTasks from '../../db/task/getAllTasks.js';
-import textMessages from '../../constants/messages/textMessages.js';
+} from '../../constants/scenes/index.js';
+import { getAllTasks } from '../../db/task/index.js';
+import { textMessages } from '../../constants/messages/index.js';
 
 const tasksGettingScene = new Scenes.BaseScene(TASK_GETTING_SCENE);
 
@@ -47,4 +47,4 @@ tasksGettingScene.action(
   },
 );
 
-export default tasksGettingScene;
+export { tasksGettingScene };

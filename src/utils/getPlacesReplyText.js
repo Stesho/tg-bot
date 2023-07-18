@@ -13,4 +13,4 @@ ${message}
   }, '');
 };
 
-export default getPlacesReplyText;
+export { getPlacesReplyText };

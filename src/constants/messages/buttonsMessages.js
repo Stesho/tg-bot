@@ -14,4 +14,4 @@ const buttonsMessages = {
   taskEditContent: '✏ Edit Content',
 };
 
-export default buttonsMessages;
+export { buttonsMessages };

@@ -40,4 +40,4 @@ humidity: <b>${weatherInfo.main.humidity}%</b>
     'Here you can get in the specified city or subscribe to daily weather notifications',
 };
 
-export default textMessages;
+export { textMessages };

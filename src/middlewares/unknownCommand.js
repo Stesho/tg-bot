@@ -1,7 +1,6 @@
 import commands from '../constants/commands/commands.js';
-import isCommand from '../utils/isCommand.js';
-import isCommandExist from '../utils/isCommandExist.js';
-import repliesMessages from '../constants/messages/repliesMessages.js';
+import { isCommand, isCommandExist } from '../utils/index.js';
+import { repliesMessages } from '../constants/messages/index.js';
 
 const unknownCommand = async (ctx, next) => {
   const message = ctx.message?.text;
@@ -13,4 +12,4 @@ const unknownCommand = async (ctx, next) => {
   return next();
 };
 
-export default unknownCommand;
+export { unknownCommand };

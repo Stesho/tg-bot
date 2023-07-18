@@ -4,10 +4,12 @@ import {
   SEARCH_IMAGE_API_URL as SEARCH_IMAGE_URL,
 } from '../../constants/api/imageApiConst.js';
 import { IMAGE_API_TOKEN } from '../../constants/environment.js/environment.js';
-import getRandomIntegerInRange from '../../utils/getRandomIntegerInRange.js';
-import createQueryParams from '../../utils/createQueryParams.js';
-import errorsMessages from '../../constants/messages/errorsMessages.js';
-import handleError from '../../utils/handleError.js';
+import {
+  getRandomIntegerInRange,
+  handleError,
+  createQueryParams,
+} from '../../utils/index.js';
+import { errorsMessages } from '../../constants/messages/index.js';
 
 const getRandomImage = async (query) => {
   try {
@@ -36,4 +38,4 @@ const getRandomImage = async (query) => {
   }
 };
 
-export default getRandomImage;
+export { getRandomImage };

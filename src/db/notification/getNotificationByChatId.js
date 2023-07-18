@@ -1,9 +1,9 @@
-import errorsMessages from '../../constants/messages/errorsMessages.js';
-import NotificationSchema from '../schemas/notificationSchema.js';
+import { errorsMessages } from '../../constants/messages/index.js';
+import { NotificationModel } from '../schemas/index.js';
 
 const getNotificationByChatId = async (chatId) => {
   try {
-    const notification = await NotificationSchema.findOne({
+    const notification = await NotificationModel.findOne({
       chatId,
     });
     return {
@@ -18,4 +18,4 @@ const getNotificationByChatId = async (chatId) => {
   }
 };
 
-export default getNotificationByChatId;
+export { getNotificationByChatId };

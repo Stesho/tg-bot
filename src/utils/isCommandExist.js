@@ -3,4 +3,4 @@ const isCommandExist = (command, commands) => {
   return commands[commandWithoutSlash];
 };
 
-export default isCommandExist;
+export { isCommandExist };
