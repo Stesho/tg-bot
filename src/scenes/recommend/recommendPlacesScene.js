@@ -25,8 +25,8 @@ const recommendPlaces = async (ctx) => {
   }
 
   const places = await getPlacesByCoords(
-    cityInfo.data[0].lon,
-    cityInfo.data[0].lat,
+    cityInfo.data[0].longitude,
+    cityInfo.data[0].latitude,
   );
 
   if (places.isError) {
