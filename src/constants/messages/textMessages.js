@@ -30,8 +30,8 @@ Weather in <b>${weatherInfo.name}</b>:
 main: <em><b>${weatherInfo.weather[0].main}</b></em>
 description: <b>${weatherInfo.weather[0].description}</b>
 
-temperature: <b>${weatherInfo.main.temp}°C</b>
-feels like: <b>${weatherInfo.main.feels_like}°C</b>
+temperature: <b>${Math.round(weatherInfo.main.temp)}°C</b>
+feels like: <b>${Math.round(weatherInfo.main.feels_like)}°C</b>
 humidity: <b>${weatherInfo.main.humidity}%</b>
   `,
   taskSceneTitle:
