@@ -1,4 +1,5 @@
 .idea
 .env
+.husky
 build
 node_modules
