@@ -1,7 +1,7 @@
 import schedule from 'node-schedule';
-import { getTasksByTime, updateManyTasks } from '../db/task/index.js';
-import { textMessages } from '../constants/messages/index.js';
-import { getCurrentTime } from './getCurrentTime.js';
+import { getTasksByTime, updateManyTasks } from '../../db/task/index.js';
+import { textMessages } from '../../constants/messages/index.js';
+import { getCurrentTime } from '../other/getCurrentTime.js';
 
 const handleScheduler = async (bot) => {
   const time = getCurrentTime();

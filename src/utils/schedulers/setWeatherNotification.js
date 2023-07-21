@@ -1,8 +1,8 @@
 import schedule from 'node-schedule';
-import { getWeatherInCity } from '../api/index.js';
-import { getNotificationsByTime } from '../db/notification/index.js';
-import { textMessages } from '../constants/messages/index.js';
-import { getCurrentTime } from './getCurrentTime.js';
+import { getWeatherInCity } from '../../api/index.js';
+import { getNotificationsByTime } from '../../db/notification/index.js';
+import { textMessages } from '../../constants/messages/index.js';
+import { getCurrentTime } from '../other/getCurrentTime.js';
 
 const handleScheduler = async (bot) => {
   const time = getCurrentTime();
