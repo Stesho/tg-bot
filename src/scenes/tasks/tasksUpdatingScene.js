@@ -10,6 +10,7 @@ import {
   buttonsMessages,
   repliesMessages,
 } from '../../constants/messages/index.js';
+
 const tasksUpdatingScene = new Scenes.BaseScene(TASK_UPDATING_SCENE);
 
 tasksUpdatingScene.enter(async (ctx) => {
@@ -61,8 +62,8 @@ tasksUpdatingScene.hears(/./, async (ctx) => {
     return ctx.reply(updatedTask.data);
   }
 
-  ctx.reply(repliesMessages.taskUpdatedSuccessfully);
   ctx.scene.state.fieldForUpdating = null;
+  return ctx.reply(repliesMessages.taskUpdatedSuccessfully);
 });
 
 export { tasksUpdatingScene };

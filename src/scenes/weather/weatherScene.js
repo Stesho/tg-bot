@@ -51,7 +51,7 @@ weatherScene.action(SUBSCRIBE_WEATHER_SCENE, (ctx) => {
 });
 
 weatherScene.action(UNSUBSCRIBE_WEATHER_SCENE, async (ctx) => {
-  const chatId = ctx.scene.state.chatId;
+  const { chatId } = ctx.scene.state;
   const deletedNotification = await deleteNotificationByChatId(chatId);
 
   if (deletedNotification.isError) {

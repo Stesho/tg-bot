@@ -6,17 +6,16 @@ import {
   TASK_OPTIONS_SCENE,
   TASK_UPDATING_SCENE,
 } from '../../constants/scenes/index.js';
-import { deleteTask } from '../../db/task/index.js';
+import { deleteTask, getOneTask } from '../../db/task/index.js';
 import {
   textMessages,
   repliesMessages,
   buttonsMessages,
 } from '../../constants/messages/index.js';
-import { getOneTask } from '../../db/task/index.js';
 
 const tasksOptionsScene = new Scenes.BaseScene(TASK_OPTIONS_SCENE);
 tasksOptionsScene.enter(async (ctx) => {
-  const taskId = ctx.scene.state.taskId;
+  const { taskId } = ctx.scene.state;
   const task = await getOneTask(taskId);
 
   if (task.isError) {
@@ -25,7 +24,7 @@ tasksOptionsScene.enter(async (ctx) => {
 
   ctx.scene.state.task = task.data;
 
-  await ctx.editMessageText(textMessages.taskOverview(task.data), {
+  return ctx.editMessageText(textMessages.taskOverview(task.data), {
     reply_markup: {
       inline_keyboard: [
         [
@@ -56,7 +55,7 @@ tasksOptionsScene.action(TASK_UPDATING_SCENE, async (ctx) => {
 });
 
 tasksOptionsScene.action(TASK_DELETION_SCENE, async (ctx) => {
-  const taskId = ctx.scene.state.taskId;
+  const { taskId } = ctx.scene.state;
   const deletedTask = await deleteTask(taskId);
 
   if (deletedTask.isError) {

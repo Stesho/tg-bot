@@ -6,7 +6,8 @@ const handleError = (error, errorHandler) => {
       isError: true,
       data: errorHandler(error),
     };
-  } else if (error.request) {
+  }
+  if (error.request) {
     return {
       isError: true,
       data: errorsMessages.requestError,

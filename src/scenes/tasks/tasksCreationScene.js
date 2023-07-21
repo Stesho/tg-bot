@@ -34,7 +34,7 @@ const createTask = async (ctx) => {
   }
 
   ctx.scene.state.task.content = ctx.message.text;
-  const task = ctx.scene.state.task;
+  const { task } = ctx.scene.state;
   const addedTask = await addTask(task);
 
   if (addedTask.isError) {

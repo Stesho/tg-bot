@@ -32,7 +32,7 @@ const askTime = async (ctx) => {
   ctx.wizard.state.weather.city = ctx.message.text;
   ctx.reply(repliesMessages.askTime);
 
-  ctx.wizard.next();
+  return ctx.wizard.next();
 };
 
 const subscribe = async (ctx) => {
@@ -40,7 +40,7 @@ const subscribe = async (ctx) => {
     return ctx.reply(repliesMessages.invalidMessage);
   }
 
-  const city = ctx.wizard.state.weather.city;
+  const { city } = ctx.wizard.state.weather;
   const time = ctx.message.text;
   const chatId = ctx.update.message.from.id;
 
@@ -52,7 +52,7 @@ const subscribe = async (ctx) => {
 
   if (!currentNotification.isError && currentNotification.data) {
     await updateNotification(chatId, {
-      city: city,
+      city,
       notificationTime: time,
     });
 
@@ -62,8 +62,8 @@ const subscribe = async (ctx) => {
   }
 
   const notification = {
-    chatId: chatId,
-    city: city,
+    chatId,
+    city,
     notificationTime: time,
   };
 

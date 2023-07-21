@@ -8,7 +8,7 @@ const handleScheduler = async (bot) => {
   const time = getCurrentTime();
   const notifications = await getNotificationsByTime(time);
 
-  for (let notification of notifications.data) {
+  for (const notification of notifications.data) {
     const weatherInfo = await getWeatherInCity(notification.city);
 
     if (weatherInfo.isError) {

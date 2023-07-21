@@ -10,7 +10,7 @@ import { textMessages } from '../../constants/messages/index.js';
 const tasksGettingScene = new Scenes.BaseScene(TASK_GETTING_SCENE);
 
 tasksGettingScene.enter(async (ctx) => {
-  const userId = ctx.scene.state.userId;
+  const { userId } = ctx.scene.state;
   const tasks = await getAllTasks(userId);
 
   if (tasks.isError) {
@@ -25,7 +25,7 @@ tasksGettingScene.enter(async (ctx) => {
     ),
   ]);
 
-  await ctx.editMessageText(
+  return ctx.editMessageText(
     tasksButtons.length > 0
       ? textMessages.taskListTitle
       : textMessages.emptyTaskList,
@@ -41,7 +41,7 @@ tasksGettingScene.action(
   new RegExp(`${TASK_SELECT_SCENE}_(.+)`),
   async (ctx) => {
     const taskId = await ctx.match.input.split('_')[1];
-    const state = ctx.scene.state;
+    const { state } = ctx.scene;
 
     return ctx.scene.enter(TASK_OPTIONS_SCENE, { ...state, taskId });
   },

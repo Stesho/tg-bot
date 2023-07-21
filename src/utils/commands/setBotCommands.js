@@ -1,7 +1,7 @@
 const setBotCommandHandlers = (bot, commands) => {
-  for (let command in commands) {
-    bot.command(command, commands[command].handler);
-  }
+  Object.entries(commands).forEach(([commandName, command]) => {
+    bot.command(commandName, command.handler);
+  });
 };
 
 export { setBotCommandHandlers };

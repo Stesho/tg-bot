@@ -10,7 +10,7 @@ import { errorsMessages } from '../../constants/messages/index.js';
 const getEventsByCountry = async (country) => {
   try {
     const queryParams = createQueryParams({
-      country: country,
+      country,
       year: new Date().getFullYear(),
       type: 'major_holiday',
     });

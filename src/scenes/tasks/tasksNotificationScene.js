@@ -44,7 +44,9 @@ const setNotification = async (ctx) => {
     return ctx.reply(updateTask.data);
   }
 
-  ctx.reply(repliesMessages.notificationCreatedSuccessfully(hours, minutes));
+  return ctx.reply(
+    repliesMessages.notificationCreatedSuccessfully(hours, minutes),
+  );
 };
 
 const tasksNotificationScene = new Scenes.WizardScene(

@@ -18,7 +18,8 @@ const getRandomImageByQuery = async (ctx, query) => {
   await ctx.replyWithPhoto({
     url: imageInfo.src.medium || imageInfo.src.large,
   });
-  ctx.deleteMessage(loadingMessage.message_id, loadingMessage.chat.id);
+
+  return ctx.deleteMessage(loadingMessage.message_id, loadingMessage.chat.id);
 };
 
 const start = (ctx) => {

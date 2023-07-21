@@ -4,7 +4,7 @@ import { NotificationModel } from '../schemas/index.js';
 const deleteNotificationByChatId = async (chatId) => {
   try {
     const deletedNotification = await NotificationModel.deleteOne({
-      chatId: chatId,
+      chatId,
     });
     return {
       isError: false,

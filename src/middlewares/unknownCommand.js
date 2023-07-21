@@ -6,7 +6,7 @@ const unknownCommand = async (ctx, next) => {
   const message = ctx.message?.text;
 
   if (isUnknownCommand(message, commands)) {
-    return await ctx.reply(repliesMessages.unknownCommand);
+    return ctx.reply(repliesMessages.unknownCommand);
   }
 
   return next();

@@ -13,8 +13,8 @@ const getPlacesByCoords = async (lon, lat) => {
       apikey: PLACES_API_TOKEN,
       radius: 1000,
       limit: 5,
-      lon: lon,
-      lat: lat,
+      lon,
+      lat,
       rate: 2,
       format: 'json',
     });

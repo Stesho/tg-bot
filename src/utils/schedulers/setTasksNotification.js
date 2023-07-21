@@ -11,7 +11,7 @@ const handleScheduler = async (bot) => {
     bot.telegram.sendMessage(task.chatId, textMessages.taskOverview(task));
   });
 
-  return await updateManyTasks(
+  return updateManyTasks(
     {
       notificationTime: time,
     },

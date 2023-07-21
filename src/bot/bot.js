@@ -32,7 +32,7 @@ import {
 const limitConfig = {
   window: 2000,
   limit: 1,
-  onLimitExceeded: (ctx, next) => ctx.reply('Rate limit exceeded'),
+  onLimitExceeded: (ctx) => ctx.reply('Rate limit exceeded'),
 };
 
 const startBot = async () => {
