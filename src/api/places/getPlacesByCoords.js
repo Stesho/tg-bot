@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import {
   BASE_PLACES_API_URL,
   GET_PLACES_API_URL,

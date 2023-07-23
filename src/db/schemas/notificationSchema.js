@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
-import { isValidTime } from '../../utils/index.js';
+
 import { repliesMessages } from '../../constants/messages/index.js';
+import { isValidTime } from '../../utils/index.js';
 
 const NotificationSchema = new Schema({
   chatId: {

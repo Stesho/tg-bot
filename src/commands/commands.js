@@ -1,10 +1,10 @@
+import { getRandomImage } from '../api/index.js';
+import { repliesMessages, textMessages } from '../constants/messages/index.js';
 import {
+  RECOMMEND_SCENE,
   TASKS_SCENE,
   WEATHER_SCENE,
-  RECOMMEND_SCENE,
 } from '../constants/scenes/index.js';
-import { textMessages, repliesMessages } from '../constants/messages/index.js';
-import { getRandomImage } from '../api/index.js';
 
 const getRandomImageByQuery = async (ctx, query) => {
   const loadingMessage = await ctx.reply(repliesMessages.loading);
@@ -41,4 +41,4 @@ const recommend = (ctx) => ctx.scene.enter(RECOMMEND_SCENE);
 
 const cancel = (ctx) => ctx.scene.leave();
 
-export { start, help, weather, cat, dog, tasks, recommend, cancel };
+export { cancel, cat, dog, help, recommend, start, tasks, weather };

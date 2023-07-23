@@ -1,11 +1,12 @@
 import axios from 'axios';
+
 import {
   BASE_EVENTS_API_URL,
   GET_EVENTS_API_URL,
 } from '../../constants/api/index.js';
 import { EVENTS_API_TOKEN } from '../../constants/environment.js/environment.js';
-import { createQueryParams, handleError } from '../../utils/index.js';
 import { errorsMessages } from '../../constants/messages/index.js';
+import { createQueryParams, handleError } from '../../utils/index.js';
 
 const getEventsByCountry = async (country) => {
   try {

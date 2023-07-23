@@ -1,4 +1,10 @@
 import { Markup, Scenes } from 'telegraf';
+
+import {
+  buttonsMessages,
+  repliesMessages,
+  textMessages,
+} from '../../constants/messages/index.js';
 import {
   TASK_DELETION_SCENE,
   TASK_GETTING_SCENE,
@@ -7,11 +13,6 @@ import {
   TASK_UPDATING_SCENE,
 } from '../../constants/scenes/index.js';
 import { deleteTask, getOneTask } from '../../db/task/index.js';
-import {
-  textMessages,
-  repliesMessages,
-  buttonsMessages,
-} from '../../constants/messages/index.js';
 
 const tasksOptionsScene = new Scenes.BaseScene(TASK_OPTIONS_SCENE);
 tasksOptionsScene.enter(async (ctx) => {

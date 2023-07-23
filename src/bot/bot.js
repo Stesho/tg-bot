@@ -1,30 +1,32 @@
-import { Telegraf, Scenes, session } from 'telegraf';
-import rateLimit from 'telegraf-ratelimit';
 import process from 'node:process';
+
+import { Scenes, session, Telegraf } from 'telegraf';
+import rateLimit from 'telegraf-ratelimit';
+
 import commands from '../constants/commands/commands.js';
 import { BOT_TOKEN } from '../constants/environment.js/environment.js';
-import {
-  weatherScene,
-  weatherSubscriptionScene,
-  weatherReceptionScene,
-} from '../scenes/weather/index.js';
-import {
-  tasksScene,
-  tasksCreationScene,
-  tasksGettingScene,
-  tasksUpdatingScene,
-  tasksNotificationScene,
-  tasksOptionsScene,
-} from '../scenes/tasks/index.js';
-import {
-  recommendScene,
-  recommendEventsScene,
-  recommendPlacesScene,
-} from '../scenes/recommend/index.js';
 import { cancelScene, unknownCommand } from '../middlewares/index.js';
 import {
-  setBotCommandHandlers,
+  recommendEventsScene,
+  recommendPlacesScene,
+  recommendScene,
+} from '../scenes/recommend/index.js';
+import {
+  tasksCreationScene,
+  tasksGettingScene,
+  tasksNotificationScene,
+  tasksOptionsScene,
+  tasksScene,
+  tasksUpdatingScene,
+} from '../scenes/tasks/index.js';
+import {
+  weatherReceptionScene,
+  weatherScene,
+  weatherSubscriptionScene,
+} from '../scenes/weather/index.js';
+import {
   commandsToArray,
+  setBotCommandHandlers,
   setTasksNotification,
   setWeatherNotification,
 } from '../utils/index.js';

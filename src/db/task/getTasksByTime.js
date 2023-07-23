@@ -1,5 +1,5 @@
-import { TaskModel } from '../schemas/index.js';
 import { errorsMessages } from '../../constants/messages/index.js';
+import { TaskModel } from '../schemas/index.js';
 
 const getTasksByTime = async (time) => {
   try {

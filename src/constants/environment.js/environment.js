@@ -1,5 +1,6 @@
-import process from 'node:process';
 import 'dotenv/config';
+
+import process from 'node:process';
 
 export const { BOT_TOKEN } = process.env;
 export const { DB_CONNECTION_URI } = process.env;

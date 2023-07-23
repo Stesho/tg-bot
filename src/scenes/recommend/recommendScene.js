@@ -1,13 +1,14 @@
 import { Markup, Scenes } from 'telegraf';
+
+import {
+  buttonsMessages,
+  textMessages,
+} from '../../constants/messages/index.js';
 import {
   RECOMMEND_EVENTS_SCENE,
   RECOMMEND_PLACES_SCENE,
   RECOMMEND_SCENE,
 } from '../../constants/scenes/index.js';
-import {
-  textMessages,
-  buttonsMessages,
-} from '../../constants/messages/index.js';
 
 const recommendScene = new Scenes.BaseScene(RECOMMEND_SCENE);
 
