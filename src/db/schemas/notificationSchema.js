@@ -1,6 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
 
-import { repliesMessages } from '../../constants/messages/index.js';
 import { isValidTime } from '../../utils/index.js';
 
 const NotificationSchema = new Schema({
@@ -14,10 +13,7 @@ const NotificationSchema = new Schema({
   },
   notificationTime: {
     type: String,
-    validate: {
-      validator: isValidTime,
-      message: repliesMessages.invalidTime,
-    },
+    validate: (time) => isValidTime(time),
   },
 });
 
