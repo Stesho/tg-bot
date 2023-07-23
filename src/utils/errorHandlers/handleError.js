@@ -1,4 +1,4 @@
-import { errorsMessages } from '../../constants/messages/index.js';
+import { errorsMessages } from '#constants/messages/index.js';
 
 const handleError = (error, errorHandler) => {
   if (error.response) {

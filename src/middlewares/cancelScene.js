@@ -1,5 +1,5 @@
-import commands from '../constants/commands/commands.js';
-import { isCommand } from '../utils/index.js';
+import commands from '#constants/commands/commands.js';
+import { isCommand } from '#utils/validators/index.js';
 
 const cancelScene = async (ctx, next) => {
   const message = ctx.message?.text;

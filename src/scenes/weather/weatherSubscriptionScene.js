@@ -1,14 +1,14 @@
 import { Scenes } from 'telegraf';
 
-import { getWeatherInCity } from '../../api/index.js';
-import { repliesMessages } from '../../constants/messages/index.js';
-import { SUBSCRIBE_WEATHER_SCENE } from '../../constants/scenes/index.js';
+import { getWeatherInCity } from '#api/index.js';
+import { repliesMessages } from '#constants/messages/index.js';
+import { SUBSCRIBE_WEATHER_SCENE } from '#constants/scenes/index.js';
 import {
   addNotification,
   getNotificationByChatId,
   updateNotification,
-} from '../../db/notification/index.js';
-import { isValidTime } from '../../utils/index.js';
+} from '#db/notification/index.js';
+import { isValidTime } from '#utils/validators/index.js';
 
 const askCity = (ctx) => {
   ctx.wizard.state.weather = {

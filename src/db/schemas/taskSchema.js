@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-import { isValidTime } from '../../utils/index.js';
+import { isValidTime } from '#utils/validators/index.js';
 
 const TaskSchema = new Schema({
   title: {

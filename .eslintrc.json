@@ -10,6 +10,24 @@
     "plugin:prettier/recommended"
   ],
   "plugins": ["simple-import-sort"],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["#root", "./src"],
+          ["#api", "./src/api"],
+          ["#bot", "./src/bot"],
+          ["#commands", "./src/commands"],
+          ["#constants", "./src/constants"],
+          ["#db", "./src/db"],
+          ["#middlewares", "./src/middlewares"],
+          ["#scenes", "./src/scenes"],
+          ["#utils", "./src/utils"],
+          ["#*", "./src/*"]
+        ]
+      }
+    }
+  },
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"

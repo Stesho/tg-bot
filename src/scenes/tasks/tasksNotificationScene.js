@@ -1,15 +1,13 @@
 import { Markup, Scenes } from 'telegraf';
 
-import {
-  buttonsMessages,
-  repliesMessages,
-} from '../../constants/messages/index.js';
+import { buttonsMessages, repliesMessages } from '#constants/messages/index.js';
 import {
   TASK_NOTIFICATION_SCENE,
   TASK_OPTIONS_SCENE,
-} from '../../constants/scenes/index.js';
-import { updateTask } from '../../db/task/index.js';
-import { isValidTime, parseTime } from '../../utils/index.js';
+} from '#constants/scenes/index.js';
+import { updateTask } from '#db/task/index.js';
+import { parseTime } from '#utils/other/index.js';
+import { isValidTime } from '#utils/validators/index.js';
 
 const askTime = async (ctx) => {
   await ctx.editMessageReplyMarkup({

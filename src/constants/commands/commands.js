@@ -7,7 +7,7 @@ import {
   start,
   tasks,
   weather,
-} from '../../commands/commands.js';
+} from '#commands/commands.js';
 
 const commands = {
   start: {
