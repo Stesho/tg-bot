@@ -18,13 +18,13 @@ const recommendPlaces = async (ctx) => {
   const city = ctx.message.text;
   const cityInfo = await getCityInfo(city);
 
-  if (cityInfo.data.length === 0) {
+  if (cityInfo.isError) {
     return ctx.reply(errorsMessages.cityNotFoundError);
   }
 
   const places = await getPlacesByCoords(
-    cityInfo.data[0].longitude,
-    cityInfo.data[0].latitude,
+    cityInfo.data.longitude,
+    cityInfo.data.latitude,
   );
 
   if (places.isError) {

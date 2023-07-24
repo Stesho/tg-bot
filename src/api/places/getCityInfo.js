@@ -9,7 +9,7 @@ import { createQueryParams } from '#utils/other/index.js';
 const getCityInfo = async (city) => {
   try {
     const queryParams = createQueryParams({
-      name: city,
+      city,
     });
 
     const cityInfo = await axios.get(
@@ -22,8 +22,8 @@ const getCityInfo = async (city) => {
     );
 
     return {
-      isError: false,
-      data: cityInfo.data,
+      isError: cityInfo.data.length === 0,
+      data: cityInfo.data[0],
     };
   } catch (error) {
     return handleError(error, () => errorsMessages.cityNotFoundError);

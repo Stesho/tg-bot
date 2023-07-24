@@ -18,11 +18,11 @@ const recommendEvents = async (ctx) => {
   const city = ctx.message.text;
   const cityInfo = await getCityInfo(city);
 
-  if (cityInfo.data.length === 0) {
+  if (cityInfo.isError) {
     return ctx.reply(errorsMessages.cityNotFoundError);
   }
 
-  const events = await getEventsByCountry(cityInfo.data[0].country);
+  const events = await getEventsByCountry(cityInfo.data.country);
 
   if (events.isError) {
     return ctx.reply(events.data);
