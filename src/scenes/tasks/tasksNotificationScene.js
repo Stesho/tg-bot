@@ -6,7 +6,7 @@ import {
   TASK_OPTIONS_SCENE,
 } from '#constants/scenes/index.js';
 import { updateTask } from '#db/task/index.js';
-import { parseTime } from '#utils/other/index.js';
+import { parseTime } from '#utils/parsers/index.js';
 import { isValidTime } from '#utils/validators/index.js';
 
 const askTime = async (ctx) => {
