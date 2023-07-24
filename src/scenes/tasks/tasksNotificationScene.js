@@ -1,14 +1,13 @@
 import { Markup, Scenes } from 'telegraf';
+
+import { buttonsMessages, repliesMessages } from '#constants/messages/index.js';
 import {
   TASK_NOTIFICATION_SCENE,
   TASK_OPTIONS_SCENE,
-} from '../../constants/scenes/index.js';
-import { parseTime, isValidTime } from '../../utils/index.js';
-import {
-  buttonsMessages,
-  repliesMessages,
-} from '../../constants/messages/index.js';
-import { updateTask } from '../../db/task/index.js';
+} from '#constants/scenes/index.js';
+import { updateTask } from '#db/task/index.js';
+import { parseTime } from '#utils/parsers/index.js';
+import { isValidTime } from '#utils/validators/index.js';
 
 const askTime = async (ctx) => {
   await ctx.editMessageReplyMarkup({
@@ -44,7 +43,9 @@ const setNotification = async (ctx) => {
     return ctx.reply(updateTask.data);
   }
 
-  ctx.reply(repliesMessages.notificationCreatedSuccessfully(hours, minutes));
+  return ctx.reply(
+    repliesMessages.notificationCreatedSuccessfully(hours, minutes),
+  );
 };
 
 const tasksNotificationScene = new Scenes.WizardScene(

@@ -1,4 +1,5 @@
 import {
+  cancel,
   cat,
   dog,
   help,
@@ -6,8 +7,7 @@ import {
   start,
   tasks,
   weather,
-  cancel,
-} from '../../commands/commands.js';
+} from '#commands/commands.js';
 
 const commands = {
   start: {

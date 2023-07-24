@@ -15,6 +15,7 @@ const errorsMessages = {
   deleteNotificationError: '❗ Error in deleting notification',
   getImageError: '❗ Error in getting image. Try again later',
   serverError: '❗ Server error. Try again later',
+  serverStartError: 'Server start error',
 };
 
 export { errorsMessages };

@@ -1,10 +1,10 @@
-import { errorsMessages } from '../../constants/messages/index.js';
-import { NotificationModel } from '../schemas/index.js';
+import { errorsMessages } from '#constants/messages/index.js';
+import { NotificationModel } from '#db/schemas/index.js';
 
 const deleteNotificationByChatId = async (chatId) => {
   try {
     const deletedNotification = await NotificationModel.deleteOne({
-      chatId: chatId,
+      chatId,
     });
     return {
       isError: false,

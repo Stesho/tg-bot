@@ -1,14 +1,15 @@
 import schedule from 'node-schedule';
-import { getWeatherInCity } from '../api/weather/getWeatherInCity.js';
-import { getNotificationsByTime } from '../db/notification/index.js';
-import { textMessages } from '../constants/messages/index.js';
-import { getCurrentTime } from './getCurrentTime.js';
+
+import { getWeatherInCity } from '#api/index.js';
+import { textMessages } from '#constants/messages/index.js';
+import { getNotificationsByTime } from '#db/notification/index.js';
+import { getCurrentTime } from '#utils/date/index.js';
 
 const handleScheduler = async (bot) => {
   const time = getCurrentTime();
   const notifications = await getNotificationsByTime(time);
 
-  for (let notification of notifications.data) {
+  for (const notification of notifications.data) {
     const weatherInfo = await getWeatherInCity(notification.city);
 
     if (weatherInfo.isError) {

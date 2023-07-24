@@ -3,11 +3,56 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["eslint:recommended", "prettier", "airbnb"],
-  "overrides": [],
+  "extends": [
+    "eslint:recommended",
+    "airbnb",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["simple-import-sort"],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["#root", "./src"],
+          ["#api", "./src/api"],
+          ["#bot", "./src/bot"],
+          ["#commands", "./src/commands"],
+          ["#constants", "./src/constants"],
+          ["#db", "./src/db"],
+          ["#middlewares", "./src/middlewares"],
+          ["#scenes", "./src/scenes"],
+          ["#utils", "./src/utils"],
+          ["#*", "./src/*"]
+        ]
+      }
+    }
+  },
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "rules": {}
+  "rules": {
+    "prettier/prettier": "error",
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-cycle": [
+      "error",
+      {
+        "maxDepth": 1
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "always"
+      }
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error"
+  }
 }

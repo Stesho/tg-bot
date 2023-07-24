@@ -1,11 +1,9 @@
 import { Scenes } from 'telegraf';
-import { RECOMMEND_PLACES_SCENE } from '../../constants/scenes/index.js';
-import { getPlacesByCoords, getCityInfo } from '../../api/index.js';
-import { getPlacesReplyText } from '../../utils/index.js';
-import {
-  errorsMessages,
-  repliesMessages,
-} from '../../constants/messages/index.js';
+
+import { getCityInfo, getPlacesByCoords } from '#api/index.js';
+import { errorsMessages, repliesMessages } from '#constants/messages/index.js';
+import { RECOMMEND_PLACES_SCENE } from '#constants/scenes/index.js';
+import { getPlacesReplyText } from '#utils/formatters/index.js';
 
 const askCity = async (ctx) => {
   await ctx.reply(repliesMessages.askCity);
@@ -20,13 +18,13 @@ const recommendPlaces = async (ctx) => {
   const city = ctx.message.text;
   const cityInfo = await getCityInfo(city);
 
-  if (cityInfo.data.length === 0) {
+  if (cityInfo.isError) {
     return ctx.reply(errorsMessages.cityNotFoundError);
   }
 
   const places = await getPlacesByCoords(
-    cityInfo.data[0].longitude,
-    cityInfo.data[0].latitude,
+    cityInfo.data.longitude,
+    cityInfo.data.latitude,
   );
 
   if (places.isError) {

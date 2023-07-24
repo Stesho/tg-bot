@@ -1,5 +1,5 @@
-import { errorsMessages } from '../../constants/messages/index.js';
-import { NotificationModel } from '../schemas/index.js';
+import { errorsMessages } from '#constants/messages/index.js';
+import { NotificationModel } from '#db/schemas/index.js';
 
 const updateNotification = async (chatId, updatedFields) => {
   try {

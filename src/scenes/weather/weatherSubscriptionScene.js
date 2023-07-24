@@ -1,13 +1,14 @@
 import { Scenes } from 'telegraf';
-import { SUBSCRIBE_WEATHER_SCENE } from '../../constants/scenes/index.js';
-import { getWeatherInCity } from '../../api/weather/getWeatherInCity.js';
-import { isValidTime } from '../../utils/index.js';
-import { repliesMessages } from '../../constants/messages/index.js';
+
+import { getWeatherInCity } from '#api/index.js';
+import { repliesMessages } from '#constants/messages/index.js';
+import { SUBSCRIBE_WEATHER_SCENE } from '#constants/scenes/index.js';
 import {
   addNotification,
   getNotificationByChatId,
   updateNotification,
-} from '../../db/notification/index.js';
+} from '#db/notification/index.js';
+import { isValidTime } from '#utils/validators/index.js';
 
 const askCity = (ctx) => {
   ctx.wizard.state.weather = {
@@ -32,7 +33,7 @@ const askTime = async (ctx) => {
   ctx.wizard.state.weather.city = ctx.message.text;
   ctx.reply(repliesMessages.askTime);
 
-  ctx.wizard.next();
+  return ctx.wizard.next();
 };
 
 const subscribe = async (ctx) => {
@@ -40,7 +41,7 @@ const subscribe = async (ctx) => {
     return ctx.reply(repliesMessages.invalidMessage);
   }
 
-  const city = ctx.wizard.state.weather.city;
+  const { city } = ctx.wizard.state.weather;
   const time = ctx.message.text;
   const chatId = ctx.update.message.from.id;
 
@@ -52,7 +53,7 @@ const subscribe = async (ctx) => {
 
   if (!currentNotification.isError && currentNotification.data) {
     await updateNotification(chatId, {
-      city: city,
+      city,
       notificationTime: time,
     });
 
@@ -62,8 +63,8 @@ const subscribe = async (ctx) => {
   }
 
   const notification = {
-    chatId: chatId,
-    city: city,
+    chatId,
+    city,
     notificationTime: time,
   };
 
