@@ -1,12 +1,11 @@
-import { Markup, Scenes } from 'telegraf';
-
-import { textMessages } from '#constants/messages/index.js';
+import { textMessages } from '@constants/messages/index.js';
 import {
   TASK_GETTING_SCENE,
   TASK_OPTIONS_SCENE,
   TASK_SELECT_SCENE,
-} from '#constants/scenes/index.js';
-import { getAllTasks } from '#db/task/index.js';
+} from '@constants/scenes/index.js';
+import { getAllTasks } from '@db/task/index.js';
+import { Markup, Scenes } from 'telegraf';
 
 const tasksGettingScene = new Scenes.BaseScene(TASK_GETTING_SCENE);
 

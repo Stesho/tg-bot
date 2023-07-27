@@ -1,9 +1,8 @@
+import { getCityInfo, getPlacesByCoords } from '@api/index.js';
+import { errorsMessages, repliesMessages } from '@constants/messages/index.js';
+import { RECOMMEND_PLACES_SCENE } from '@constants/scenes/index.js';
+import { getPlacesReplyText } from '@utils/formatters/index.js';
 import { Scenes } from 'telegraf';
-
-import { getCityInfo, getPlacesByCoords } from '#api/index.js';
-import { errorsMessages, repliesMessages } from '#constants/messages/index.js';
-import { RECOMMEND_PLACES_SCENE } from '#constants/scenes/index.js';
-import { getPlacesReplyText } from '#utils/formatters/index.js';
 
 const askCity = async (ctx) => {
   await ctx.reply(repliesMessages.askCity);

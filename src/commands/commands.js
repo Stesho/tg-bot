@@ -1,10 +1,10 @@
-import { getRandomImage } from '#api/index.js';
-import { repliesMessages, textMessages } from '#constants/messages/index.js';
+import { getRandomImage } from '@api/index.js';
+import { repliesMessages, textMessages } from '@constants/messages/index.js';
 import {
   RECOMMEND_SCENE,
   TASKS_SCENE,
   WEATHER_SCENE,
-} from '#constants/scenes/index.js';
+} from '@constants/scenes/index.js';
 
 const getRandomImageByQuery = async (ctx, query) => {
   const loadingMessage = await ctx.reply(repliesMessages.loading);

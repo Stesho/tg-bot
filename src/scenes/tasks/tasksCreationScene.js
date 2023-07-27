@@ -1,8 +1,7 @@
+import { repliesMessages } from '@constants/messages/index.js';
+import { TASK_ADD_SCENE } from '@constants/scenes/index.js';
+import { addTask } from '@db/task/index.js';
 import { Scenes } from 'telegraf';
-
-import { repliesMessages } from '#constants/messages/index.js';
-import { TASK_ADD_SCENE } from '#constants/scenes/index.js';
-import { addTask } from '#db/task/index.js';
 
 const askTitle = async (ctx) => {
   ctx.scene.state.task = {

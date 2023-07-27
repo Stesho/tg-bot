@@ -1,13 +1,12 @@
-import axios from 'axios';
-
 import {
   BASE_WEATHER_API_URL as BASE_URL,
   GET_WEATHER_API_URL as GET_WEATHER_URL,
-} from '#constants/api/weatherApiConst.js';
-import { WEATHER_API_TOKEN } from '#constants/environment/environment.js';
-import { errorsMessages } from '#constants/messages/index.js';
-import { handleError } from '#utils/errorHandlers/index.js';
-import { createQueryParams } from '#utils/queryParams/index.js';
+} from '@constants/api/weatherApiConst.js';
+import { WEATHER_API_TOKEN } from '@constants/environment/environment.js';
+import { errorsMessages } from '@constants/messages/index.js';
+import { handleError } from '@utils/errorHandlers/index.js';
+import { createQueryParams } from '@utils/queryParams/index.js';
+import axios from 'axios';
 
 const getWeatherInCity = async (city) => {
   try {

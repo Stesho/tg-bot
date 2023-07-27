@@ -1,18 +1,17 @@
-import { Markup, Scenes } from 'telegraf';
-
 import {
   buttonsMessages,
   repliesMessages,
   textMessages,
-} from '#constants/messages/index.js';
+} from '@constants/messages/index.js';
 import {
   TASK_DELETION_SCENE,
   TASK_GETTING_SCENE,
   TASK_NOTIFICATION_SCENE,
   TASK_OPTIONS_SCENE,
   TASK_UPDATING_SCENE,
-} from '#constants/scenes/index.js';
-import { deleteTask, getOneTask } from '#db/task/index.js';
+} from '@constants/scenes/index.js';
+import { deleteTask, getOneTask } from '@db/task/index.js';
+import { Markup, Scenes } from 'telegraf';
 
 const tasksOptionsScene = new Scenes.BaseScene(TASK_OPTIONS_SCENE);
 tasksOptionsScene.enter(async (ctx) => {

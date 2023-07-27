@@ -1,14 +1,13 @@
-import axios from 'axios';
-
 import {
   BASE_IMAGE_API_URL as BASE_URL,
   SEARCH_IMAGE_API_URL as SEARCH_IMAGE_URL,
-} from '#constants/api/imageApiConst.js';
-import { IMAGE_API_TOKEN } from '#constants/environment/environment.js';
-import { errorsMessages } from '#constants/messages/index.js';
-import { handleError } from '#utils/errorHandlers/index.js';
-import { getRandomIntegerInRange } from '#utils/math/index.js';
-import { createQueryParams } from '#utils/queryParams/index.js';
+} from '@constants/api/imageApiConst.js';
+import { IMAGE_API_TOKEN } from '@constants/environment/environment.js';
+import { errorsMessages } from '@constants/messages/index.js';
+import { handleError } from '@utils/errorHandlers/index.js';
+import { getRandomIntegerInRange } from '@utils/math/index.js';
+import { createQueryParams } from '@utils/queryParams/index.js';
+import axios from 'axios';
 
 const getRandomImage = async (query) => {
   try {

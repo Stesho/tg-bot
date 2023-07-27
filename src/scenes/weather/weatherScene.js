@@ -1,17 +1,16 @@
-import { Markup, Scenes } from 'telegraf';
-
 import {
   buttonsMessages,
   repliesMessages,
   textMessages,
-} from '#constants/messages/index.js';
+} from '@constants/messages/index.js';
 import {
   GET_WEATHER_SCENE,
   SUBSCRIBE_WEATHER_SCENE,
   UNSUBSCRIBE_WEATHER_SCENE,
   WEATHER_SCENE,
-} from '#constants/scenes/index.js';
-import { deleteNotificationByChatId } from '#db/notification/index.js';
+} from '@constants/scenes/index.js';
+import { deleteNotificationByChatId } from '@db/notification/index.js';
+import { Markup, Scenes } from 'telegraf';
 
 const weatherScene = new Scenes.BaseScene(WEATHER_SCENE);
 

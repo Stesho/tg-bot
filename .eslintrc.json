@@ -14,16 +14,15 @@
     "import/resolver": {
       "alias": {
         "map": [
-          ["#root", "./src"],
-          ["#api", "./src/api"],
-          ["#bot", "./src/bot"],
-          ["#commands", "./src/commands"],
-          ["#constants", "./src/constants"],
-          ["#db", "./src/db"],
-          ["#middlewares", "./src/middlewares"],
-          ["#scenes", "./src/scenes"],
-          ["#utils", "./src/utils"],
-          ["#*", "./src/*"]
+          ["@root", "./src/"],
+          ["@api", "./src/api/"],
+          ["@bot", "./src/bot/"],
+          ["@commands", "./src/commands/"],
+          ["@constants", "./src/constants/"],
+          ["@db", "./src/db/"],
+          ["@middlewares", "./src/middlewares/"],
+          ["@scenes", "./src/scenes/"],
+          ["@utils", "./src/utils/"]
         ]
       }
     }
@@ -34,8 +33,6 @@
   },
   "rules": {
     "prettier/prettier": "error",
-    "import/prefer-default-export": "off",
-    "import/no-extraneous-dependencies": "off",
     "import/no-cycle": [
       "error",
       {
@@ -49,10 +46,13 @@
         "js": "always"
       }
     ],
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
     "import/first": "error",
     "import/newline-after-import": "error",
-    "import/no-duplicates": "error"
+    "import/no-duplicates": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "no-underscore-dangle": "off",
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }

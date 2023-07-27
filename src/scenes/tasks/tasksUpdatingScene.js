@@ -1,13 +1,12 @@
-import { Markup, Scenes } from 'telegraf';
-
-import { buttonsMessages, repliesMessages } from '#constants/messages/index.js';
+import { buttonsMessages, repliesMessages } from '@constants/messages/index.js';
 import {
   TASK_CONTENT_UPDATING_SCENE,
   TASK_OPTIONS_SCENE,
   TASK_TITLE_UPDATING_SCENE,
   TASK_UPDATING_SCENE,
-} from '#constants/scenes/index.js';
-import { updateTask } from '#db/task/index.js';
+} from '@constants/scenes/index.js';
+import { updateTask } from '@db/task/index.js';
+import { Markup, Scenes } from 'telegraf';
 
 const tasksUpdatingScene = new Scenes.BaseScene(TASK_UPDATING_SCENE);
 
