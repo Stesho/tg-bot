@@ -1,4 +1,4 @@
-import { getShiftedTime } from '#utils/date/getShiftedTime.js';
+import { getShiftedTime } from '@utils/date/getShiftedTime.js';
 
 const getCurrentTime = () => {
   const serverHoursShift = 3;

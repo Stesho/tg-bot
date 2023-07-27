@@ -1,16 +1,13 @@
 import process from 'node:process';
 
-import { Scenes, session, Telegraf } from 'telegraf';
-import rateLimit from 'telegraf-ratelimit';
-
-import commands from '#constants/commands/commands.js';
-import { BOT_TOKEN } from '#constants/environment/environment.js';
-import { cancelScene, unknownCommand } from '#middlewares/index.js';
+import commands from '@constants/commands/commands.js';
+import { BOT_TOKEN } from '@constants/environment/environment.js';
+import { cancelScene, unknownCommand } from '@middlewares/index.js';
 import {
   recommendEventsScene,
   recommendPlacesScene,
   recommendScene,
-} from '#scenes/recommend/index.js';
+} from '@scenes/recommend/index.js';
 import {
   tasksCreationScene,
   tasksGettingScene,
@@ -18,20 +15,22 @@ import {
   tasksOptionsScene,
   tasksScene,
   tasksUpdatingScene,
-} from '#scenes/tasks/index.js';
+} from '@scenes/tasks/index.js';
 import {
   weatherReceptionScene,
   weatherScene,
   weatherSubscriptionScene,
-} from '#scenes/weather/index.js';
+} from '@scenes/weather/index.js';
 import {
   commandsToArray,
   setBotCommandHandlers,
-} from '#utils/commands/index.js';
+} from '@utils/commands/index.js';
 import {
   setTasksNotification,
   setWeatherNotification,
-} from '#utils/schedulers/index.js';
+} from '@utils/schedulers/index.js';
+import { Scenes, session, Telegraf } from 'telegraf';
+import rateLimit from 'telegraf-ratelimit';
 
 const limitConfig = {
   window: 2000,

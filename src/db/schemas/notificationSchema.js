@@ -1,6 +1,5 @@
+import { isValidTime } from '@utils/validators/index.js';
 import mongoose, { Schema } from 'mongoose';
-
-import { isValidTime } from '#utils/validators/index.js';
 
 const NotificationSchema = new Schema({
   chatId: {

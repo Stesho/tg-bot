@@ -5,8 +5,8 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "node build/index.cjs",
+    "dev": "nodemon build/index.cjs",
     "build": "webpack --config webpack.prod.js",
     "build:dev": "webpack --config webpack.dev.js",
     "format": "prettier --write .",
@@ -18,18 +18,6 @@
   "license": "ISC",
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
-  },
-  "imports": {
-    "#root/*": "./src/*",
-    "#api": "./src/api",
-    "#bot": "./src/bot",
-    "#commands": "./src/commands",
-    "#constants": "./src/constants",
-    "#db": "./src/db",
-    "#middlewares": "./src/middlewares",
-    "#scenes": "./src/scenes",
-    "#utils": "./src/utils",
-    "#*": "./src/*"
   },
   "devDependencies": {
     "dotenv": "^16.3.1",
@@ -44,6 +32,7 @@
     "lint-staged": "^13.2.2",
     "nodemon": "^2.0.22",
     "prettier": "3.0.0",
+    "terser-webpack-plugin": "^5.3.9",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-merge": "^5.9.0"
